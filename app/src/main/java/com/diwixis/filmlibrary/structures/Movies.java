@@ -3,6 +3,8 @@ package com.diwixis.filmlibrary.structures;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -10,7 +12,7 @@ import io.realm.RealmObject;
  * Created by Diwixis on 18.04.2017.
  */
 
-public class Movies extends RealmObject{
+public class Movies{
 
     @SerializedName("page")
     @Expose
@@ -27,7 +29,7 @@ public class Movies extends RealmObject{
         this.page = page;
     }
 
-    public RealmList<Result> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 

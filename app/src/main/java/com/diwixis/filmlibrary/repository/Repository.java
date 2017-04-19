@@ -22,8 +22,6 @@ public class Repository implements IRepository{
         return TmdbApi.getTmdbService()
                 .getMovies(Params.getMovieParams())
                 .map(Movies::getResults)
-                .flatMap(Observable::from)
-                .toList()
                 .doOnNext(results -> Realm.getDefaultInstance()
                         .executeTransaction(realm -> realm.copyToRealmOrUpdate(results)))
                 .onErrorResumeNext(throwable -> {
