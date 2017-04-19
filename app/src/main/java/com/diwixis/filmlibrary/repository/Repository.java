@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.repository;
 
-import com.diwixis.filmlibrary.Constants;
+import com.diwixis.filmlibrary.Params;
 import com.diwixis.filmlibrary.api.TmdbApi;
 import com.diwixis.filmlibrary.structures.Movies;
 import com.diwixis.filmlibrary.structures.Result;
@@ -20,7 +20,7 @@ public class Repository implements IRepository{
     @Override
     public Observable<List<Result>> movies() {
         return TmdbApi.getTmdbService()
-                .getMovies(Constants.apiKey, "ru", 2)
+                .getMovies(Params.getMovieParams())
                 .map(Movies::getResults)
                 .flatMap(Observable::from)
                 .toList()
