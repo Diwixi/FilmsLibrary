@@ -57,8 +57,10 @@ class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ViewHolder>
             super(itemView);
             ButterKnife.bind(this, itemView);
             ViewGroup.LayoutParams layoutParams = image.getLayoutParams();
-            layoutParams.height = 200;
-            layoutParams.width = 200;
+            //убрать
+            layoutParams.height = 80;
+            layoutParams.width = 100;
+            //
             image.requestLayout();
         }
     }

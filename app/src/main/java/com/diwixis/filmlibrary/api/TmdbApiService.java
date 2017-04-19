@@ -1,6 +1,5 @@
 package com.diwixis.filmlibrary.api;
 
-import com.diwixis.filmlibrary.Constants;
 import com.diwixis.filmlibrary.structures.Movies;
 
 import retrofit2.http.GET;

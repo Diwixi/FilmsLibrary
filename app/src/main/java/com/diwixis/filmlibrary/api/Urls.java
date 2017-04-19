@@ -5,8 +5,6 @@ package com.diwixis.filmlibrary.api;
  */
 
 public class Urls {
-//    public static final String BASE = "https://api.themoviedb.org/3/";
-//    public static final String MOVIE = "movie";
     public static final String BASE = "https://api.themoviedb.org/3/";
     public static final String MOVIE = "/discover/movie";
 }

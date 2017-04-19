@@ -2,10 +2,10 @@ package com.diwixis.filmlibrary.repository;
 
 import android.support.annotation.NonNull;
 
-import com.diwixis.filmlibrary.structures.Movies;
 import com.diwixis.filmlibrary.structures.Result;
 
 import java.util.List;
+
 import rx.Observable;
 
 /**

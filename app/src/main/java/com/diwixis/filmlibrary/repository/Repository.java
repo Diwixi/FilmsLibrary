@@ -12,8 +12,6 @@ import io.realm.RealmResults;
 import ru.arturvasilov.rxloader.RxUtils;
 import rx.Observable;
 
-import static java.util.stream.Collectors.toList;
-
 /**
  * Created by Diwixis on 19.04.2017.
  */
@@ -26,13 +24,8 @@ public class Repository implements IRepository{
                 .map(Movies::getResults)
                 .flatMap(Observable::from)
                 .toList()
-                .doOnNext(results -> {
-                    Realm.getDefaultInstance().executeTransaction(realm -> {
-//                        realm.copyToRealmOrUpdate(results);
-//                        realm.delete(Result.class);
-//                        realm.insert(results);
-                    });
-                })
+                .doOnNext(results -> Realm.getDefaultInstance()
+                        .executeTransaction(realm -> realm.copyToRealmOrUpdate(results)))
                 .onErrorResumeNext(throwable -> {
                     Realm realm = Realm.getDefaultInstance();
                     RealmResults<Result> repositories = realm.where(Result.class).findAll();

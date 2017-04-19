@@ -1,15 +1,15 @@
 package com.diwixis.filmlibrary.movies_module;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+
 import com.diwixis.filmlibrary.R;
 import com.diwixis.filmlibrary.structures.Result;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,40 +28,11 @@ public class MovieGreedActivity extends AppCompatActivity implements MovieGreedV
 
     private MovieGreedPresenter presenter;
 
-    List<Movie> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_greed);
         ButterKnife.bind(this);
-
-//        int imageHeight = (getResources().getDisplayMetrics().heightPixels - actionBarHeight - statusBarHeight) / 2;
-//        String a = "https://i10.fotocdn.net/s16/249/gallery_xs/232/9365496.jpg";
-//        String a = "https://cdn.dribbble.com/users/479355/screenshots/3441681/nothing.png";
-//        list = new ArrayList<>();
-//        list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
-//        list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));list.add(new Movie(a));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));

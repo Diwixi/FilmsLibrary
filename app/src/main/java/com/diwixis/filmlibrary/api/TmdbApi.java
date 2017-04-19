@@ -1,8 +1,5 @@
 package com.diwixis.filmlibrary.api;
 
-import android.support.annotation.NonNull;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,17 +9,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class TmdbApi {
-    private static OkHttpClient sClient;
-
-    private static volatile TmdbApiService sService;
+    private static volatile TmdbApiService mService;
 
     public static TmdbApiService getTmdbService(){
-        TmdbApiService service = sService;
+        TmdbApiService service = mService;
         if (service == null) {
             synchronized (TmdbApi.class) {
-                service = sService;
+                service = mService;
                 if (service == null) {
-                    service = sService = buildRetrofit().create(TmdbApiService.class);
+                    service = mService = buildRetrofit().create(TmdbApiService.class);
                 }
             }
         }
@@ -32,33 +27,12 @@ public class TmdbApi {
     private static Retrofit buildRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(Urls.BASE)
-                .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
 
-    private static OkHttpClient getClient() {
-        OkHttpClient client = sClient;
-        if (client == null) {
-            synchronized (TmdbApi.class) {
-                client = sClient;
-                if (client == null) {
-                    client = sClient = buildClient();
-                }
-            }
-        }
-        return client;
-    }
-
-    private static OkHttpClient buildClient() {
-        return new OkHttpClient.Builder()
-                .addInterceptor(LogginInterceptor.create())
-                .addInterceptor(ApiKeyInterceptor.create())
-                .build();
-    }
-
     public static void create() {
-        sService = buildRetrofit().create(TmdbApiService.class);
+        mService = buildRetrofit().create(TmdbApiService.class);
     }
 }
