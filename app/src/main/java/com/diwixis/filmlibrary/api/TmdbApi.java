@@ -26,7 +26,7 @@ public class TmdbApi {
 
     private static Retrofit buildRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl(Urls.BASE)
+                .baseUrl(Urls.BASE_MOVE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

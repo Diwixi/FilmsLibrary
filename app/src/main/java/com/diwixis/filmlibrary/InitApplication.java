@@ -5,6 +5,7 @@ import android.app.Application;
 import com.diwixis.filmlibrary.api.TmdbApi;
 import com.diwixis.filmlibrary.repository.RepositoryProvider;
 
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.rx.RealmObservableFactory;
@@ -18,8 +19,8 @@ public class InitApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        RealmConfiguration configuration = new RealmConfiguration.Builder(this)
+        Realm.init(this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .rxFactory(new RealmObservableFactory())
                 .build();
         Realm.setDefaultConfiguration(configuration);

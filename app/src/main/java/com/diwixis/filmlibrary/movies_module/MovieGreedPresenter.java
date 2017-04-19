@@ -25,7 +25,6 @@ class MovieGreedPresenter {
                 .movies()
                 .doOnSubscribe(movieGreedView::showLoad)
                 .doOnTerminate(movieGreedView::hideLoad)
-                .compose(lifecycleHandler.reload(R.id.request))
                 .subscribe(movieGreedView::showMovie);
     }
 

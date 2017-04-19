@@ -1,5 +1,6 @@
 package com.diwixis.filmlibrary.repository;
 
+import com.diwixis.filmlibrary.Constants;
 import com.diwixis.filmlibrary.Params;
 import com.diwixis.filmlibrary.api.TmdbApi;
 import com.diwixis.filmlibrary.structures.Movies;
