@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.diwixis.filmlibrary.R;
+import com.diwixis.filmlibrary.api.Urls;
 import com.diwixis.filmlibrary.structures.Result;
 
 import java.util.ArrayList;
@@ -24,10 +25,17 @@ import butterknife.ButterKnife;
 class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ViewHolder> {
 
     private List<Result> movieList = new ArrayList<>();
+    private IOnItemClick clickListener = null;
+    private int width = 0;
 
-    void setData(List<Result> list){
-        movieList.addAll(list);
+    void setData(List<Result> list, int width){
+        movieList = list;
         notifyDataSetChanged();
+        this.width = width;
+    }
+
+    void setClickListener(IOnItemClick listener){
+        clickListener = listener;
     }
 
     @Override
@@ -40,7 +48,10 @@ class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ViewHolder>
     public void onBindViewHolder(ViewHolder holder, int position) {
         Result movie = movieList.get(position);
         Glide.with(holder.image.getContext())
-                .load(movie.getPosterPath())
+                .load(Urls.IMAGE_URL+movie.getPosterPath())
+                .asBitmap()
+                .override(width, width)
+                .centerCrop()
                 .into(holder.image);
     }
 
@@ -49,19 +60,24 @@ class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ViewHolder>
         return movieList == null ? 0 : movieList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    public interface IOnItemClick{
+        void onItemClick(Result result);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.image)
         ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            ViewGroup.LayoutParams layoutParams = image.getLayoutParams();
-            //убрать
-            layoutParams.height = 80;
-            layoutParams.width = 100;
-            //
+            itemView.setOnClickListener(this);
             image.requestLayout();
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onItemClick(movieList.get(getAdapterPosition()));
         }
     }
 }

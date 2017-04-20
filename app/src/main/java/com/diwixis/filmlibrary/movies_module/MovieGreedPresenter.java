@@ -1,6 +1,5 @@
 package com.diwixis.filmlibrary.movies_module;
 
-import com.diwixis.filmlibrary.R;
 import com.diwixis.filmlibrary.repository.RepositoryProvider;
 
 import ru.arturvasilov.rxloader.LifecycleHandler;
@@ -20,18 +19,17 @@ class MovieGreedPresenter {
         this.movieGreedView = movieGreedView;
     }
 
-    void init() {
+    void init(boolean isTopRated) {
         RepositoryProvider.providerRepository()
-                .movies()
+                .movies(isTopRated)
                 .doOnSubscribe(movieGreedView::showLoad)
                 .doOnTerminate(movieGreedView::hideLoad)
                 .subscribe(movieGreedView::showMovie);
     }
 
-    void update() {
+    void update(boolean isTopRated) {
         RepositoryProvider.providerRepository()
-                .movies()
-                .compose(lifecycleHandler.reload(R.id.request))
+                .movies(isTopRated)
                 .subscribe(movieGreedView::showMovie);
     }
 }

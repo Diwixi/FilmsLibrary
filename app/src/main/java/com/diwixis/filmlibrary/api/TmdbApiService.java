@@ -4,11 +4,7 @@ import com.diwixis.filmlibrary.structures.Movies;
 
 import java.util.HashMap;
 
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -17,9 +13,9 @@ import rx.Observable;
  */
 
 public interface TmdbApiService {
-    @GET(Urls.MOVIE)
-    Observable<Movies> getMovies(@QueryMap HashMap<String, String> params);
+    @GET(Urls.MOVIE_POPULAR)
+    Observable<Movies> getPopularMovies(@QueryMap HashMap<String, String> params);
 
-    @GET(Urls.IMAGE)
-    Call<ResponseBody> getImage(@Part("file_path") String filePath);
+    @GET(Urls.MOVIE_TOP_RATE)
+    Observable<Movies> getTopRatedMovies(@QueryMap HashMap<String, String> params);
 }

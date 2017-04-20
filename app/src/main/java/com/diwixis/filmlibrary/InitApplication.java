@@ -5,7 +5,6 @@ import android.app.Application;
 import com.diwixis.filmlibrary.api.TmdbApi;
 import com.diwixis.filmlibrary.repository.RepositoryProvider;
 
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.rx.RealmObservableFactory;

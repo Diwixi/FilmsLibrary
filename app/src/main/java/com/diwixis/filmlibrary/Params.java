@@ -10,7 +10,7 @@ public class Params {
     public static HashMap<String, String> getMovieParams(){
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("api_key", Constants.apiKey);
-        hashMap.put("language", "ru");
+        hashMap.put("language", "en");
         hashMap.put("page", Integer.toString(1));
         return hashMap;
     }

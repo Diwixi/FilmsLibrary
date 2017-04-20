@@ -1,5 +1,7 @@
 package com.diwixis.filmlibrary.structures;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,6 +27,7 @@ public class Result extends RealmObject {
 
     @SerializedName("id")
     @Expose
+    @NonNull
     private Integer id;
 
     @SerializedName("original_title")
@@ -39,24 +42,12 @@ public class Result extends RealmObject {
         return posterPath;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
     public String getOverview() {
         return overview;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
     public String getReleaseDate() {
         return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
     }
 
     public Integer getId() {
@@ -71,16 +62,8 @@ public class Result extends RealmObject {
         return originalTitle;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
-
     public Double getPopularity() {
         return popularity;
-    }
-
-    public void setPopularity(Double popularity) {
-        this.popularity = popularity;
     }
 
 }

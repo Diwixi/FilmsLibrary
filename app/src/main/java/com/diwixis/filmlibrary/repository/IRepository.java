@@ -14,5 +14,5 @@ import rx.Observable;
 
 public interface IRepository {
     @NonNull
-    Observable<List<Result>> movies();
+    Observable<List<Result>> movies(boolean isTopRated);
 }
