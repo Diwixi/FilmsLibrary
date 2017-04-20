@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -28,6 +31,11 @@ public class MovieGreedActivity extends AppCompatActivity implements MovieGreedV
 
     private MovieGreedPresenter presenter;
 
+    int width = 0;
+
+    private MovieItemAdapter.IOnItemClick clickListener =
+            result -> MovieActivity.startActivity(MovieGreedActivity.this, result);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +43,40 @@ public class MovieGreedActivity extends AppCompatActivity implements MovieGreedV
         ButterKnife.bind(this);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new MovieItemAdapter();
+        adapter.setClickListener(clickListener);
         recyclerView.setAdapter(adapter);
 
         LifecycleHandler lifecycleHandler = LoaderLifecycleHandler.create(this, getSupportLoaderManager());
         presenter = new MovieGreedPresenter(lifecycleHandler, this);
-        presenter.init();
+        presenter.init(false);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        width = display.getWidth();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_popular: {
+                presenter.update(false);
+                return true;
+            }
+            case R.id.item_top_rated: {
+                presenter.update(true);
+                return true;
+            }
+            default: {
+                return super.onOptionsItemSelected(item);
+            }
+        }
     }
 
     @Override
@@ -56,6 +91,6 @@ public class MovieGreedActivity extends AppCompatActivity implements MovieGreedV
 
     @Override
     public void showMovie(List<Result> results) {
-        adapter.setData(results);
+        adapter.setData(results, width/3);
     }
 }
