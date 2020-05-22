@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TmdbApi {
     private static volatile TmdbApiService mService;
 
-    public static TmdbApiService getTmdbService(){
+    public static TmdbApiService getTmdbService() {
         TmdbApiService service = mService;
         if (service == null) {
             synchronized (TmdbApi.class) {
@@ -32,6 +32,7 @@ public class TmdbApi {
                 .build();
     }
 
+    //заменить на провайд
     public static void create() {
         mService = buildRetrofit().create(TmdbApiService.class);
     }

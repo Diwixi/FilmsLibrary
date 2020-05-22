@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.structures;
+package com.diwixis.filmlibrary.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import io.realm.RealmList;
-import io.realm.RealmObject;
 
 /**
  * Created by Diwixis on 18.04.2017.

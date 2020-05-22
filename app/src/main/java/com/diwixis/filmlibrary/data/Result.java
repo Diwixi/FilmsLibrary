@@ -1,6 +1,4 @@
-package com.diwixis.filmlibrary.structures;
-
-import android.support.annotation.NonNull;
+package com.diwixis.filmlibrary.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +25,6 @@ public class Result extends RealmObject {
 
     @SerializedName("id")
     @Expose
-    @NonNull
     private Integer id;
 
     @SerializedName("original_title")

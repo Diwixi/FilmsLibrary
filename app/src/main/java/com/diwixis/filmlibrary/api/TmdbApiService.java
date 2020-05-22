@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.api;
 
-import com.diwixis.filmlibrary.structures.Movies;
+import com.diwixis.filmlibrary.data.Movies;
 
 import java.util.HashMap;
 

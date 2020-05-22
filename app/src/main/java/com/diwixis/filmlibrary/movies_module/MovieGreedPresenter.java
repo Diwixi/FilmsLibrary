@@ -2,20 +2,15 @@ package com.diwixis.filmlibrary.movies_module;
 
 import com.diwixis.filmlibrary.repository.RepositoryProvider;
 
-import ru.arturvasilov.rxloader.LifecycleHandler;
-
 
 /**
  * Created by Diwixis on 19.04.2017.
  */
 
 class MovieGreedPresenter {
-
-    private final LifecycleHandler lifecycleHandler;
     private final MovieGreedView movieGreedView;
 
-    MovieGreedPresenter(LifecycleHandler lifecycleHandler, MovieGreedView movieGreedView) {
-        this.lifecycleHandler = lifecycleHandler;
+    MovieGreedPresenter(MovieGreedView movieGreedView) {
         this.movieGreedView = movieGreedView;
     }
 

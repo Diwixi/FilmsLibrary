@@ -1,8 +1,8 @@
 package com.diwixis.filmlibrary.repository;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.diwixis.filmlibrary.structures.Result;
+import com.diwixis.filmlibrary.data.Result;
 
 import java.util.List;
 

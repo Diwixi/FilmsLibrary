@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.movies_module;
 
-import com.diwixis.filmlibrary.structures.Result;
+import com.diwixis.filmlibrary.data.Result;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import java.util.List;
 
 interface MovieGreedView {
     void showLoad();
+
     void hideLoad();
+
     void showMovie(List<Result> results);
 }

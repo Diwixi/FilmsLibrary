@@ -3,14 +3,13 @@ package com.diwixis.filmlibrary.repository;
 import com.diwixis.filmlibrary.Params;
 import com.diwixis.filmlibrary.api.TmdbApi;
 import com.diwixis.filmlibrary.api.TmdbApiService;
-import com.diwixis.filmlibrary.structures.Movies;
-import com.diwixis.filmlibrary.structures.Result;
+import com.diwixis.filmlibrary.data.Movies;
+import com.diwixis.filmlibrary.data.Result;
 
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import ru.arturvasilov.rxloader.RxUtils;
 import rx.Observable;
 
 /**
@@ -38,7 +37,6 @@ public class Repository implements IRepository{
                     Realm realm = Realm.getDefaultInstance();
                     RealmResults<Result> repositories = realm.where(Result.class).findAll();
                     return Observable.just(realm.copyFromRealm(repositories));
-                })
-                .compose(RxUtils.async());
+                });
     }
 }

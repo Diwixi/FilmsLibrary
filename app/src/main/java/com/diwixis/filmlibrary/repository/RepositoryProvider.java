@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.repository;
 
-import android.support.annotation.MainThread;
+import androidx.annotation.MainThread;
 
 /**
  * Created by Diwixis on 19.04.2017.
