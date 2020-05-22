@@ -11,28 +11,32 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Diwixis on 19.04.2017.
  */
 
-public class Repository implements IRepository{
+public class Repository implements IRepository {
     @Override
     public Observable<List<Result>> movies(boolean isTopRated) {
         TmdbApiService tmdbService = TmdbApi.getTmdbService();
         Observable<Movies> observable;
-        if (isTopRated){
+        if (isTopRated) {
             observable = tmdbService.getTopRatedMovies(Params.getMovieParams());
         } else {
             observable = tmdbService.getPopularMovies(Params.getMovieParams());
         }
         return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(Movies::getResults)
                 .doOnNext(results -> Realm.getDefaultInstance()
-                    .executeTransaction(realm -> {
-                        realm.delete(Result.class);
-                        realm.insert(results);
-                    }))
+                        .executeTransaction(realm -> {
+                            realm.delete(Result.class);
+                            realm.insert(results);
+                        }))
                 .onErrorResumeNext(throwable -> {
                     Realm realm = Realm.getDefaultInstance();
                     RealmResults<Result> repositories = realm.where(Result.class).findAll();
