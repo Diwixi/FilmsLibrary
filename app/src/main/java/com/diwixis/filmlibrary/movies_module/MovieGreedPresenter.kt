@@ -1,6 +1,5 @@
 package com.diwixis.filmlibrary.movies_module
 
-import com.diwixis.filmlibrary.data.map
 import com.diwixis.filmlibrary.repository.MoviesRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -23,10 +22,10 @@ class MovieGreedPresenter(
             .doOnSubscribe { movieGreedView.showLoad() }
             .subscribe(
                 { results ->
-                    movieGreedView.showMovie(results.map().movies)
+                    movieGreedView.showMovie(results)
                 },
                 {
-
+                    it.toString()
                 }
             ).addTo(rxDisposables)
     }

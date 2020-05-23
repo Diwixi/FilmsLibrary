@@ -27,6 +27,7 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
         val adapter = MovieItemAdapter()
         adapter.setClickListener(clickListener)
         recycler.adapter = adapter
+        presenter.movieGreedView = this
         presenter.init(false)
         val display = windowManager.defaultDisplay
         width = display.width

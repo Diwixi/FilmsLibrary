@@ -1,8 +1,8 @@
 package com.diwixis.filmlibrary
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Network {
@@ -23,7 +23,7 @@ object Network {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(httpClient)
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gson)
             .build()
 }

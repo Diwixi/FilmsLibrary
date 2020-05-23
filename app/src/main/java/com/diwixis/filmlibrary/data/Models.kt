@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diwixis.filmlibrary.api.Urls
-import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE_PAGE
+import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 import com.diwixis.filmlibrary.movies_module.Movie
 import com.diwixis.filmlibrary.movies_module.Movies
 import com.google.gson.annotations.SerializedName
@@ -14,9 +14,8 @@ import com.google.gson.annotations.SerializedName
  *
  * @author П. Густокашин (Diwixis)
  */
-@Entity(tableName = TABLE_MOVIE_PAGE)
 data class MoviesBean(
-    @PrimaryKey @ColumnInfo(name = "page")
+    @ColumnInfo(name = "page")
     @SerializedName("page") val page: Int,
     @ColumnInfo(name = "results")
     @SerializedName("results") val movies: List<MovieBean> = emptyList()
@@ -24,8 +23,9 @@ data class MoviesBean(
 
 fun MoviesBean.map() = Movies(page = page, movies = movies.map { it.map() })
 
+@Entity(tableName = TABLE_MOVIE)
 data class MovieBean(
-    @ColumnInfo(name = COLUMN_NAME_ID)
+    @PrimaryKey @ColumnInfo(name = COLUMN_NAME_ID)
     @SerializedName(COLUMN_NAME_ID)
     val id: Int,
     @ColumnInfo(name = COLUMN_NAME_TITLE)
@@ -46,7 +46,6 @@ data class MovieBean(
 ) {
     companion object {
         const val TABLE_MOVIE = "movie"
-        const val TABLE_MOVIE_PAGE = "movie_page"
         const val COLUMN_NAME_ID = "id"
         const val COLUMN_NAME_TITLE = "title"
         const val COLUMN_NAME_POSTER_PATH = "poster_path"
