@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Urls
-import com.diwixis.filmlibrary.data.Result
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_movie.*
 
@@ -24,22 +23,22 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
         //создать презентер
         //в презентере метод Observasble<Movie> repositoryGetMovies
         //view show movie
-        val realm = Realm.getDefaultInstance()
-        val repositories = realm.where(Result::class.java)
-            .equalTo("id", intent.getIntExtra("RESULT_KEY", -1))
-            .findFirst()
-        val res = realm.copyFromRealm(repositories)
-        val display = windowManager.defaultDisplay
-        val width = display.width
-        Glide.with(poster.context)
-            .load("${Urls.IMAGE_URL}${res.posterPath}")
-            .override(width, width)
-            .centerCrop()
-            .into(poster)
-        originalTitle.text = res.originalTitle
-        overview.text = res.overview
-        popularity.text = res.popularity.toString()
-        relaseDate.text = res.releaseDate
+//        val realm = Realm.getDefaultInstance()
+//        val repositories = realm.where(Movie::class.java)
+//            .equalTo("id", intent.getIntExtra("RESULT_KEY", -1))
+//            .findFirst()
+//        val res = realm.copyFromRealm(repositories)
+//        val display = windowManager.defaultDisplay
+//        val width = display.width
+//        Glide.with(poster.context)
+//            .load("${Urls.IMAGE_URL}${res.posterPath}")
+//            .override(width, width)
+//            .centerCrop()
+//            .into(poster)
+//        originalTitle.text = res.originalTitle
+//        overview.text = res.overview
+//        popularity.text = res.popularity.toString()
+//        relaseDate.text = res.releaseDate
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,10 +57,10 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
     companion object {
         fun startActivity(
             activity: Activity,
-            result: Result
+            movie: Movie
         ) {
             val intent = Intent(activity, MovieActivity::class.java)
-            intent.putExtra("RESULT_KEY", result.id)
+            intent.putExtra("RESULT_KEY", movie.id)
             activity.startActivity(intent)
         }
     }

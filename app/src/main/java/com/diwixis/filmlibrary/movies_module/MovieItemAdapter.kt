@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Urls
-import com.diwixis.filmlibrary.data.Result
 import kotlinx.android.synthetic.main.item_movie.view.*
 import java.util.*
 
@@ -16,11 +15,11 @@ import java.util.*
  */
 internal class MovieItemAdapter :
     RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
-    private var movieList: List<Result>? = ArrayList()
+    private var movieList: List<Movie>? = ArrayList()
     private var clickListener: IOnItemClick? = null
     private var width = 0
     fun setData(
-        list: List<Result>?,
+        list: List<Movie>?,
         width: Int
     ) {
         movieList = list
@@ -53,7 +52,7 @@ internal class MovieItemAdapter :
     }
 
     interface IOnItemClick {
-        fun onItemClick(result: Result?)
+        fun onItemClick(movie: Movie?)
     }
 
     internal inner class ViewHolder(itemView: View) :
@@ -62,7 +61,7 @@ internal class MovieItemAdapter :
             clickListener!!.onItemClick(movieList!![adapterPosition])
         }
 
-        fun bind(movie: Result) {
+        fun bind(movie: Movie) {
             itemView.setOnClickListener(this)
             Glide.with(itemView.image.context)
                 .load(Urls.IMAGE_URL + movie.posterPath)

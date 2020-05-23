@@ -11,7 +11,7 @@ public class Params {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("api_key", Constants.apiKey);
         hashMap.put("language", "en");
-        hashMap.put("page", Integer.toString(1));
+        hashMap.put("page", "1");
         return hashMap;
     }
 }

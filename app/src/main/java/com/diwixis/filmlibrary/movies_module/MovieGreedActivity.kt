@@ -7,16 +7,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.data.Result
 import com.diwixis.filmlibrary.movies_module.MovieItemAdapter.IOnItemClick
 import kotlinx.android.synthetic.main.activity_movie_greed.*
+import org.koin.android.ext.android.inject
 
 class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), MovieGreedView {
-    private var presenter: MovieGreedPresenter? = null
+    private val presenter by inject<MovieGreedPresenter>()
     var width = 0
     private val clickListener = object : IOnItemClick {
-        override fun onItemClick(result: Result?) {
-            MovieActivity.startActivity(this@MovieGreedActivity, result!!)
+        override fun onItemClick(movie: Movie?) {
+            MovieActivity.startActivity(this@MovieGreedActivity, movie!!)
         }
     }
 
@@ -27,8 +27,7 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
         val adapter = MovieItemAdapter()
         adapter.setClickListener(clickListener)
         recycler.adapter = adapter
-        presenter = MovieGreedPresenter(this)
-        presenter!!.init(false)
+        presenter.init(false)
         val display = windowManager.defaultDisplay
         width = display.width
     }
@@ -41,11 +40,11 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_popular -> {
-                presenter!!.update(false)
+                presenter.update(false)
                 true
             }
             R.id.item_top_rated -> {
-                presenter!!.update(true)
+                presenter.update(true)
                 true
             }
             else -> {
@@ -62,7 +61,8 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
         progressBar.visibility = View.INVISIBLE
     }
 
-    override fun showMovie(results: List<Result>) {
-        (recycler.adapter as MovieItemAdapter).setData(results, width / 3)
+    override fun showMovie(results: List<Movie>) {
+        results.toString()
+//        (recycler.adapter as MovieItemAdapter).setData(results, width / 3)
     }
 }
