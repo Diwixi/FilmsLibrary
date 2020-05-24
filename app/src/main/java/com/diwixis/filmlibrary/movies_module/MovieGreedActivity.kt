@@ -62,8 +62,7 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
         progressBar.visibility = View.INVISIBLE
     }
 
-    override fun showMovie(results: List<Movie>) {
-        results.toString()
-//        (recycler.adapter as MovieItemAdapter).setData(results, width / 3)
+    override fun showMovie(movieList: List<Movie>) {
+        (recycler.adapter as MovieItemAdapter).setData(movieList, width / 3)
     }
 }

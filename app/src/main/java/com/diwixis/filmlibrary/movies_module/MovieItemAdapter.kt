@@ -8,18 +8,17 @@ import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Urls
 import kotlinx.android.synthetic.main.item_movie.view.*
-import java.util.*
 
 /**
  * Created by Diwixis on 18.04.2017.
  */
 internal class MovieItemAdapter :
     RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
-    private var movieList: List<Movie>? = ArrayList()
+    private var movieList: List<Movie> = emptyList()
     private var clickListener: IOnItemClick? = null
     private var width = 0
     fun setData(
-        list: List<Movie>?,
+        list: List<Movie>,
         width: Int
     ) {
         movieList = list
@@ -35,8 +34,9 @@ internal class MovieItemAdapter :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        val view = LayoutInflater
+            .from(parent.context)
+            .inflate(R.layout.item_movie, parent, false)
         return ViewHolder(view)
     }
 
@@ -44,12 +44,10 @@ internal class MovieItemAdapter :
         holder: ViewHolder,
         position: Int
     ) {
-        holder.bind(movieList!![position])
+        holder.bind(movieList[position])
     }
 
-    override fun getItemCount(): Int {
-        return if (movieList == null) 0 else movieList!!.size
-    }
+    override fun getItemCount() = movieList.size
 
     interface IOnItemClick {
         fun onItemClick(movie: Movie?)
@@ -63,8 +61,8 @@ internal class MovieItemAdapter :
 
         fun bind(movie: Movie) {
             itemView.setOnClickListener(this)
-            Glide.with(itemView.image.context)
-                .load(Urls.IMAGE_URL + movie.posterPath)
+            Glide.with(itemView.image)
+                .load(movie.posterPath)
                 .override(width, width)
                 .centerCrop()
                 .into(itemView.image)

@@ -8,5 +8,5 @@ import com.diwixis.filmlibrary.data.MoviesBean
 interface MovieGreedView {
     fun showLoad()
     fun hideLoad()
-    fun showMovie(results: List<Movie>)
+    fun showMovie(movieList: List<Movie>)
 }

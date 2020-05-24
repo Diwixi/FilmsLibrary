@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diwixis.filmlibrary.api.Urls
+import com.diwixis.filmlibrary.api.Urls.IMAGE_URL
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 import com.diwixis.filmlibrary.movies_module.Movie
 import com.diwixis.filmlibrary.movies_module.Movies
@@ -60,6 +61,6 @@ fun List<MovieBean>.map() = this.map { it.map() }
 fun MovieBean.map() = Movie(
     id = id,
     title = title,
-    posterPath = "${Urls.BASE}${posterPath}",
+    posterPath = "${IMAGE_URL}${posterPath}",
     overview = overview
 )

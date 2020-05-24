@@ -5,19 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
-    tools:context="com.diwixis.filmlibrary.movies_module.MovieGreedActivity">
-
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".movies_module.MovieGreedActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_movie"
-        />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_movie" />
 
     <ProgressBar
         android:id="@+id/progressBar"

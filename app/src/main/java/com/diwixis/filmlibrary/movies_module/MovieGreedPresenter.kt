@@ -23,6 +23,7 @@ class MovieGreedPresenter(
             .subscribe(
                 { results ->
                     movieGreedView.showMovie(results)
+                    movieGreedView.hideLoad()
                 },
                 {
                     it.toString()
