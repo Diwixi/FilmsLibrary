@@ -2,6 +2,7 @@ package com.diwixis.filmlibrary;
 
 /**
  * Created by Diwixis on 18.04.2017.
+ *  Вынести в градл
  */
 
 public class Constants {

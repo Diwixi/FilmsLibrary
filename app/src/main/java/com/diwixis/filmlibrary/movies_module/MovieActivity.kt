@@ -28,12 +28,7 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //вынести в репозиторий
-        //создать презентер
-        //в презентере метод Observasble<Movie> repositoryGetMovies
-        //view show movie
 
-        //вынести
         val movieId = intent.getIntExtra("RESULT_KEY", -1)
         repository.getmovieById(movieId)
             .subscribeOn(Schedulers.io())

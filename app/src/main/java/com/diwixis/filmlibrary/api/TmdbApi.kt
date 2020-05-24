@@ -14,5 +14,5 @@ interface TmdbApi {
     fun getPopularMovies(@QueryMap params: HashMap<String, String>): Single<MoviesBean>
 
     @GET(Urls.MOVIE_TOP_RATE)
-    fun getTopRatedMovies(@QueryMap params: HashMap<String, String?>): Single<MoviesBean>
+    fun getTopRatedMovies(@QueryMap params: HashMap<String, String>): Single<MoviesBean>
 }

@@ -28,7 +28,7 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
         adapter.setClickListener(clickListener)
         recycler.adapter = adapter
         presenter.movieGreedView = this
-        presenter.init(false)
+        presenter.showPopularMovies()
         val display = windowManager.defaultDisplay
         width = display.width
     }
@@ -41,11 +41,11 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_popular -> {
-                presenter.update(false)
+                presenter.showPopularMovies()
                 true
             }
             R.id.item_top_rated -> {
-                presenter.update(true)
+                presenter.showTopRateMovies()
                 true
             }
             else -> {

@@ -15,7 +15,7 @@ class MovieGreedPresenter(
     lateinit var movieGreedView: MovieGreedView
     private val rxDisposables = CompositeDisposable()
 
-    fun init(isTopRated: Boolean) {
+    fun showTopRateMovies() {
         repository.getTopRateMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -31,13 +31,19 @@ class MovieGreedPresenter(
             ).addTo(rxDisposables)
     }
 
-    fun update(isTopRated: Boolean) {
-//        RepositoryProvider.providerRepository()
-//            .movies(isTopRated)
-//            .subscribe({ results: List<Result?>? ->
-//                movieGreedView.showMovie(
-//                    results
-//                )
-//            })
+    fun showPopularMovies() {
+        repository.getpopularMovies()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { movieGreedView.showLoad() }
+            .subscribe(
+                { results ->
+                    movieGreedView.showMovie(results)
+                    movieGreedView.hideLoad()
+                },
+                {
+                    it.toString()
+                }
+            ).addTo(rxDisposables)
     }
 }
