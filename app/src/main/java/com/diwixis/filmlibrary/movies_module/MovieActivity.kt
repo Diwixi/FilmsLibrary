@@ -9,13 +9,22 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Urls
-import io.realm.Realm
+import com.diwixis.filmlibrary.repository.MoviesRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_movie.*
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Diwixis on 20.04.2017.
  */
 class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
+
+    private val repository by inject<MoviesRepository>()
+
+    private val rxDisposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,22 +32,33 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
         //создать презентер
         //в презентере метод Observasble<Movie> repositoryGetMovies
         //view show movie
-//        val realm = Realm.getDefaultInstance()
-//        val repositories = realm.where(Movie::class.java)
-//            .equalTo("id", intent.getIntExtra("RESULT_KEY", -1))
-//            .findFirst()
-//        val res = realm.copyFromRealm(repositories)
-//        val display = windowManager.defaultDisplay
-//        val width = display.width
-//        Glide.with(poster.context)
-//            .load("${Urls.IMAGE_URL}${res.posterPath}")
-//            .override(width, width)
-//            .centerCrop()
-//            .into(poster)
-//        originalTitle.text = res.originalTitle
-//        overview.text = res.overview
-//        popularity.text = res.popularity.toString()
-//        relaseDate.text = res.releaseDate
+
+        //вынести
+        val movieId = intent.getIntExtra("RESULT_KEY", -1)
+        repository.getmovieById(movieId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { results ->
+                    showMovie(results)
+                },
+                {
+                    it.toString()
+                }
+            ).addTo(rxDisposables)
+
+
+    }
+
+    private fun showMovie(movie: Movie) {
+        Glide.with(poster)
+            .load("${movie.posterPath}")
+            .centerCrop()
+            .into(poster)
+        originalTitle.text = movie.originalTitle
+        overview.text = movie.overview
+        popularity.text = movie.popularity.toString()
+        relaseDate.text = movie.releaseDate
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

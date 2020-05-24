@@ -8,5 +8,6 @@ import io.reactivex.Single
  */
 interface MoviesRepository {
     fun getTopRateMovies(): Single<List<Movie>>
+    fun getmovieById(movieId: Int): Single<Movie>
 //    fun getpopularMovies(): Single<List<Movie>>
 }

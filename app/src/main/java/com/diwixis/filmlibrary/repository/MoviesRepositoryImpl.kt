@@ -4,6 +4,8 @@ import com.diwixis.filmlibrary.Params
 import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
 import com.diwixis.filmlibrary.data.map
+import com.diwixis.filmlibrary.movies_module.Movie
+import io.reactivex.Single
 
 /**
  * Created by Diwixis on 19.04.2017.
@@ -20,6 +22,8 @@ class MoviesRepositoryImpl(
         .onErrorResumeNext {
             db.movieDao().getAll().map { it.map() }
         }
+
+    override fun getmovieById(movieId: Int) = db.movieDao().getById(movieId).map { it.map() }
 
     //    override fun movies(isTopRated: Boolean): Observable<List<Result>> {
 //        val tmdbService: TmdbApi = TmdbApi.getTmdbService()

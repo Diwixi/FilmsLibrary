@@ -62,5 +62,8 @@ fun MovieBean.map() = Movie(
     id = id,
     title = title,
     posterPath = "${IMAGE_URL}${posterPath}",
-    overview = overview
+    overview = overview,
+    releaseDate = releaseDate,
+    originalTitle = originalTitle,
+    popularity = popularity
 )
