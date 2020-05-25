@@ -2,7 +2,6 @@ package com.diwixis.filmlibrary
 
 import com.diwixis.filmlibrary.Network.createNetworkClient
 import com.diwixis.filmlibrary.api.TmdbApi
-import com.diwixis.filmlibrary.api.Urls
 import com.diwixis.filmlibrary.data.Database
 import com.diwixis.filmlibrary.movies_module.MovieGreedPresenter
 import com.diwixis.filmlibrary.repository.MoviesRepository
@@ -29,6 +28,6 @@ val presenterModule = module {
 }
 
 private val movieRetrofit: Retrofit
-    get() = createNetworkClient(Urls.BASE)
+    get() = createNetworkClient(BuildConfig.API_BASE_URL)
 
 private val movieApi: TmdbApi = movieRetrofit.create(TmdbApi::class.java)

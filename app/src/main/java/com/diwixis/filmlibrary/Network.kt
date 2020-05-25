@@ -19,11 +19,10 @@ object Network {
         baseUrl: String,
         httpClient: OkHttpClient,
         gson: GsonConverterFactory
-    ): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(httpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(gson)
-            .build()
+    ) = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .client(httpClient)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(gson)
+        .build()
 }

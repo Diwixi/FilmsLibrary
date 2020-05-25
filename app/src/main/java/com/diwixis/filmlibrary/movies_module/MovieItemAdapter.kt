@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.api.Urls
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 /**
@@ -56,7 +55,7 @@ internal class MovieItemAdapter :
     internal inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
         override fun onClick(v: View) {
-            clickListener!!.onItemClick(movieList!![adapterPosition])
+            clickListener?.onItemClick(movieList[adapterPosition])
         }
 
         fun bind(movie: Movie) {
