@@ -14,7 +14,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "API_BASE_URL", '"http://api.themoviedb.org/"'
+        buildConfigField "String", "API_BASE_URL", '"https://api.themoviedb.org/"'
         buildConfigField "String", "API_KEY", '"0516658c86a06036a56245c87217383f"'
         buildConfigField "String", "API_IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500"'
     }

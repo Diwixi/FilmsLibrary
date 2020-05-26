@@ -38,6 +38,7 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
                     showMovie(results)
                 },
                 {
+                    //TODO add error
                     it.toString()
                 }
             ).addTo(rxDisposables)
