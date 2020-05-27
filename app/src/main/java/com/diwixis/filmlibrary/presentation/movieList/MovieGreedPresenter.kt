@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation.movieList
 
 import com.diwixis.filmlibrary.repository.MoviesRepository
 import io.reactivex.android.schedulers.AndroidSchedulers

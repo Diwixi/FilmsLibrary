@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation.movieList
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
+import com.diwixis.filmlibrary.presentation.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 /**

@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation
 
 import java.io.Serializable
 

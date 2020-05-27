@@ -1,5 +1,6 @@
-package com.diwixis.filmlibrary
+package com.diwixis.filmlibrary.api
 
+import com.diwixis.filmlibrary.BuildConfig
 import java.util.*
 
 /**

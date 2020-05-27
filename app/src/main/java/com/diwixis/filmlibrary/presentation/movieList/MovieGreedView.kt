@@ -1,6 +1,6 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation.movieList
 
-import com.diwixis.filmlibrary.data.MoviesBean
+import com.diwixis.filmlibrary.presentation.Movie
 
 /**
  * Created by Diwixis on 19.04.2017.
