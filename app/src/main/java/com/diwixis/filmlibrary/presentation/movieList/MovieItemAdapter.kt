@@ -16,14 +16,10 @@ internal class MovieItemAdapter :
     RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
     private var movieList: List<Movie> = emptyList()
     private var clickListener: IOnItemClick? = null
-    private var width = 0
-    fun setData(
-        list: List<Movie>,
-        width: Int
-    ) {
+
+    fun setData(list: List<Movie>) {
         movieList = list
         notifyDataSetChanged()
-        this.width = width
     }
 
     fun setClickListener(listener: IOnItemClick?) {
@@ -63,7 +59,6 @@ internal class MovieItemAdapter :
             itemView.setOnClickListener(this)
             Glide.with(itemView.image)
                 .load(movie.posterPath)
-                .override(width, width)
                 .centerCrop()
                 .into(itemView.image)
             itemView.image.requestLayout()

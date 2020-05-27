@@ -21,7 +21,7 @@ class FilmsLibraryApp : Application() {
 
         startKoin {
             androidContext(this@FilmsLibraryApp)
-            modules(dataModule, repositoryModule, presenterModule)
+            modules(dataModule, repositoryModule, viewModelModule)
         }
     }
 }

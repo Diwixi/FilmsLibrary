@@ -5,19 +5,22 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.presentation.*
+import com.diwixis.filmlibrary.api.Failure
+import com.diwixis.filmlibrary.api.Load
+import com.diwixis.filmlibrary.api.Response
+import com.diwixis.filmlibrary.api.Success
+import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.presentation.movieDetail.MovieActivity
 import com.diwixis.filmlibrary.presentation.movieList.MovieItemAdapter.IOnItemClick
 import kotlinx.android.synthetic.main.activity_movie_greed.*
 import org.koin.android.ext.android.inject
 
-class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed),
-    MovieGreedView {
-    private val presenter by inject<MovieGreedPresenter>()
+class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), MovieGreedView {
     private val viewModel by inject<MovieGreedViewModel>()
-    var width = 0
+
     private val clickListener = object : IOnItemClick {
         override fun onItemClick(movie: Movie?) {
             MovieActivity.startActivity(
@@ -27,18 +30,35 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed),
         }
     }
 
+    private val showMovieObserver = Observer<Response<List<Movie>>> {
+        when (it) {
+            is Load -> {
+                showLoad()
+            }
+
+            is Success -> {
+                hideLoad()
+                (recycler.adapter as MovieItemAdapter).setData(it.value)
+            }
+
+            is Failure -> {
+                hideLoad()
+                //TODO add error processor
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recycler.setHasFixedSize(true)
-        recycler.layoutManager = GridLayoutManager(this, 2)
-        val adapter =
-            MovieItemAdapter()
-        adapter.setClickListener(clickListener)
-        recycler.adapter = adapter
-        presenter.movieGreedView = this
-        presenter.showPopularMovies()
-        val display = windowManager.defaultDisplay
-        width = display.width
+        with(recycler) {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(this@MovieGreedActivity, 2)
+            adapter = MovieItemAdapter().apply { setClickListener(clickListener) }
+        }
+        with(viewModel) {
+            movies.observe(this@MovieGreedActivity, showMovieObserver)
+            loadPopularMovies()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -49,11 +69,11 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_popular -> {
-                presenter.showPopularMovies()
+                viewModel.loadPopularMovies()
                 true
             }
             R.id.item_top_rated -> {
-                presenter.showTopRateMovies()
+                viewModel.loadTopRateMovies()
                 true
             }
             else -> {
@@ -68,9 +88,5 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed),
 
     override fun hideLoad() {
         progressBar.visibility = View.INVISIBLE
-    }
-
-    override fun showMovie(movieList: List<Movie>) {
-        (recycler.adapter as MovieItemAdapter).setData(movieList, width / 3)
     }
 }

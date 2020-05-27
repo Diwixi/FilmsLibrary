@@ -3,7 +3,6 @@ package com.diwixis.filmlibrary.presentation.movieList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.repository.MoviesRepository
@@ -11,8 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  *
@@ -25,49 +22,35 @@ class MovieGreedViewModel(
 
     private val rxDisposables = CompositeDisposable()
 
-    private val _movies: MutableLiveData<List<Movie>> = MutableLiveData()
-    val movies: LiveData<List<Movie>> = _movies
+    private val _movies: MutableLiveData<Response<List<Movie>>> = MutableLiveData()
+    val movies: LiveData<Response<List<Movie>>> = _movies
 
-//    val topRate = liveData<Response<List<Movie>>> {
-//        repository.getTopRateMovies()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                { results ->
-//                    emit(Response.success(results))
-//                },
-//                {
-//                    emit(Response.failure(it))
-//                }
-//            ).addTo(rxDisposables)
-//    }
-
-    fun showTopRateMovies() {
+    fun loadTopRateMovies() {
         repository.getTopRateMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { _movies.value = Response.load() }
             .subscribe(
                 { results ->
-                    _movies.value = results
+                    _movies.value = Response.success(results)
                 },
                 {
-                    it.toString()
+                    _movies.value = Response.failure(it)
                 }
             ).addTo(rxDisposables)
     }
 
-    fun showPopularMovies() {
+    fun loadPopularMovies() {
         repository.getpopularMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe { movieGreedView.showLoad() }
+            .doOnSubscribe { _movies.value = Response.load() }
             .subscribe(
                 { results ->
-                    _movies.value = results
-//                    movieGreedView.hideLoad()
+                    _movies.value = Response.success(results)
                 },
                 {
-                    it.toString()
+                    _movies.value = Response.failure(it)
                 }
             ).addTo(rxDisposables)
     }
