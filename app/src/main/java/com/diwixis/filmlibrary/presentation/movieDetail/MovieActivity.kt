@@ -1,5 +1,6 @@
 package com.diwixis.filmlibrary.presentation.movieDetail
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -47,15 +48,15 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
         viewModel.loadMovieById(movieId)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showMovie(movie: Movie) {
         Glide.with(poster)
             .load("${movie.posterPath}")
-            .centerCrop()
             .into(poster)
         originalTitle.text = movie.originalTitle
-        overview.text = movie.overview
-        popularity.text = movie.popularity.toString()
-        relaseDate.text = movie.releaseDate
+        overview.text = "${getString(R.string.overview)} ${movie.overview}"
+        popularity.text = "${getString(R.string.popularity_text)} ${movie.popularity}"
+        relaseDate.text = "${getString(R.string.day_out)} ${movie.releaseDate}"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

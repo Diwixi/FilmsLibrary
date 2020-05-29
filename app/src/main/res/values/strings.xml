@@ -3,6 +3,7 @@
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
     <string name="back">Back</string>
+    <string name="overview">Overview:</string>
     <string name="popularity_text">Populary:</string>
     <string name="day_out">Release date:</string>
 </resources>
