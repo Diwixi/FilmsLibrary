@@ -16,9 +16,7 @@ import io.reactivex.schedulers.Schedulers
  *
  * @author П. Густокашин (Diwixis)
  */
-class MovieGreedViewModel(
-    private val repository: MoviesRepository
-) : ViewModel() {
+class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val rxDisposables = CompositeDisposable()
 

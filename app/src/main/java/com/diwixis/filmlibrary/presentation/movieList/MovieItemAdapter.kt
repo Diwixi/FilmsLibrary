@@ -46,7 +46,7 @@ internal class MovieItemAdapter :
     override fun getItemCount() = movieList.size
 
     interface IOnItemClick {
-        fun onItemClick(movie: Movie?)
+        fun onItemClick(movie: Movie)
     }
 
     internal inner class ViewHolder(itemView: View) :

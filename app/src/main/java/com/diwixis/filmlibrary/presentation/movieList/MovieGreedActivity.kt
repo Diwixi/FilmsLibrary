@@ -3,8 +3,8 @@ package com.diwixis.filmlibrary.presentation.movieList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.diwixis.filmlibrary.R
@@ -18,31 +18,24 @@ import com.diwixis.filmlibrary.presentation.movieList.MovieItemAdapter.IOnItemCl
 import kotlinx.android.synthetic.main.activity_movie_greed.*
 import org.koin.android.ext.android.inject
 
-class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), MovieGreedView {
+class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed) {
     private val viewModel by inject<MovieGreedViewModel>()
 
     private val clickListener = object : IOnItemClick {
-        override fun onItemClick(movie: Movie?) {
-            MovieActivity.startActivity(
-                this@MovieGreedActivity,
-                movie!!
-            )
+        override fun onItemClick(movie: Movie) {
+            MovieActivity.startActivity(this@MovieGreedActivity, movie)
         }
     }
 
-    private val showMovieObserver = Observer<Response<List<Movie>>> {
+    private val listMovieObserver = Observer<Response<List<Movie>>> {
         when (it) {
-            is Load -> {
-                showLoad()
-            }
-
+            is Load -> progressBar.isVisible = true
             is Success -> {
-                hideLoad()
+                progressBar.isVisible = false
                 (recycler.adapter as MovieItemAdapter).setData(it.value)
             }
-
             is Failure -> {
-                hideLoad()
+                progressBar.isVisible = false
                 //TODO add error processor
             }
         }
@@ -56,7 +49,7 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
             adapter = MovieItemAdapter().apply { setClickListener(clickListener) }
         }
         with(viewModel) {
-            movies.observe(this@MovieGreedActivity, showMovieObserver)
+            movies.observe(this@MovieGreedActivity, listMovieObserver)
             loadPopularMovies()
         }
     }
@@ -80,13 +73,5 @@ class MovieGreedActivity : AppCompatActivity(R.layout.activity_movie_greed), Mov
                 super.onOptionsItemSelected(item)
             }
         }
-    }
-
-    override fun showLoad() {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideLoad() {
-        progressBar.visibility = View.INVISIBLE
     }
 }
