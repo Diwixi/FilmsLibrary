@@ -29,8 +29,8 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
         when (it) {
             is Load -> progressBar.isVisible = true
             is Success -> {
-                progressBar.isVisible = false
                 showMovie(it.value)
+                progressBar.isVisible = false
             }
             is Failure -> {
                 progressBar.isVisible = false
@@ -42,6 +42,7 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        motion.transitionToEnd()
         viewModel.movie.observe(this, movieObserver)
 
         val movieId = intent.getIntExtra(EXTRA_MOVIE_ID, 0)
