@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diwixis.filmlibrary.BuildConfig
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
-import com.diwixis.filmlibrary.movies_module.Movie
-import com.diwixis.filmlibrary.movies_module.Movies
+import com.diwixis.filmlibrary.presentation.Movie
+import com.diwixis.filmlibrary.presentation.Movies
 import com.google.gson.annotations.SerializedName
 
 /**

@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation.movieList
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
+import com.diwixis.filmlibrary.presentation.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 /**
@@ -15,14 +16,10 @@ internal class MovieItemAdapter :
     RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
     private var movieList: List<Movie> = emptyList()
     private var clickListener: IOnItemClick? = null
-    private var width = 0
-    fun setData(
-        list: List<Movie>,
-        width: Int
-    ) {
+
+    fun setData(list: List<Movie>) {
         movieList = list
         notifyDataSetChanged()
-        this.width = width
     }
 
     fun setClickListener(listener: IOnItemClick?) {
@@ -49,7 +46,7 @@ internal class MovieItemAdapter :
     override fun getItemCount() = movieList.size
 
     interface IOnItemClick {
-        fun onItemClick(movie: Movie?)
+        fun onItemClick(movie: Movie)
     }
 
     internal inner class ViewHolder(itemView: View) :
@@ -62,7 +59,6 @@ internal class MovieItemAdapter :
             itemView.setOnClickListener(this)
             Glide.with(itemView.image)
                 .load(movie.posterPath)
-                .override(width, width)
                 .centerCrop()
                 .into(itemView.image)
             itemView.image.requestLayout()

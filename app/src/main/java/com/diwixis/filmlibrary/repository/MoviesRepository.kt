@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.repository
 
-import com.diwixis.filmlibrary.movies_module.Movie
+import com.diwixis.filmlibrary.presentation.Movie
 import io.reactivex.Single
 
 /**

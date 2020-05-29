@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.repository
 
-import com.diwixis.filmlibrary.Params
+import com.diwixis.filmlibrary.api.Params
 import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
 import com.diwixis.filmlibrary.data.map
@@ -36,5 +36,4 @@ class MoviesRepositoryImpl(
         }
 
     override fun getmovieById(movieId: Int) = db.movieDao().getById(movieId).map { it.map() }
-
 }

@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.movies_module
+package com.diwixis.filmlibrary.presentation.movieDetail
 
 import android.app.Activity
 import android.content.Intent
@@ -6,14 +6,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.api.Urls
-import com.diwixis.filmlibrary.repository.MoviesRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
+import com.diwixis.filmlibrary.api.Failure
+import com.diwixis.filmlibrary.api.Load
+import com.diwixis.filmlibrary.api.Response
+import com.diwixis.filmlibrary.api.Success
+import com.diwixis.filmlibrary.presentation.Movie
 import kotlinx.android.synthetic.main.activity_movie.*
 import org.koin.android.ext.android.inject
 
@@ -22,28 +23,28 @@ import org.koin.android.ext.android.inject
  */
 class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
 
-    private val repository by inject<MoviesRepository>()
-
-    private val rxDisposables = CompositeDisposable()
+    private val viewModel by inject<MovieDetailViewModel>()
+    private val movieObserver = Observer<Response<Movie>> {
+        when (it) {
+            is Load -> progressBar.isVisible = true
+            is Success -> {
+                progressBar.isVisible = false
+                showMovie(it.value)
+            }
+            is Failure -> {
+                progressBar.isVisible = false
+                //TODO show error
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val movieId = intent.getIntExtra("RESULT_KEY", -1)
-        repository.getmovieById(movieId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { results ->
-                    showMovie(results)
-                },
-                {
-                    //TODO add error
-                    it.toString()
-                }
-            ).addTo(rxDisposables)
+        viewModel.movie.observe(this, movieObserver)
 
-
+        val movieId = intent.getIntExtra(EXTRA_MOVIE_ID, 0)
+        viewModel.loadMovieById(movieId)
     }
 
     private fun showMovie(movie: Movie) {
@@ -71,12 +72,15 @@ class MovieActivity : AppCompatActivity((R.layout.activity_movie)) {
     }
 
     companion object {
+        const val EXTRA_MOVIE_ID = "com.diwixis.filmlibrary.presentation.movieDetail.EXTRA_MOVIE_ID"
+
         fun startActivity(
             activity: Activity,
             movie: Movie
         ) {
-            val intent = Intent(activity, MovieActivity::class.java)
-            intent.putExtra("RESULT_KEY", movie.id)
+            val intent = Intent(activity, MovieActivity::class.java).apply {
+                putExtra(EXTRA_MOVIE_ID, movie.id)
+            }
             activity.startActivity(intent)
         }
     }

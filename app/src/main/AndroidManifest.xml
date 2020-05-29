@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".movies_module.MovieGreedActivity">
+        <activity android:name=".presentation.movieList.MovieGreedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".movies_module.MovieActivity"/>
+        <activity android:name=".presentation.movieDetail.MovieActivity"/>
     </application>
 
 </manifest>
