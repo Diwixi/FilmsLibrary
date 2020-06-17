@@ -1,9 +1,15 @@
 package com.diwixis.filmlibrary.presentation
 
-import android.view.Menu
-import android.view.MenuItem
+import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.diwixis.filmlibrary.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.ext.android.get
 
 /**
  *
@@ -12,24 +18,16 @@ import com.diwixis.filmlibrary.R
  */
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.item_popular -> {
-//                viewModel.loadPopularMovies()
-                true
-            }
-            R.id.item_top_rated -> {
-//                viewModel.loadTopRateMovies()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
+        val navView: BottomNavigationView = findViewById(R.id.bottomNav)
+
+        val navController = findNavController(R.id.navHostFragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.navigationMovies, R.id.navigationAbout)
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }

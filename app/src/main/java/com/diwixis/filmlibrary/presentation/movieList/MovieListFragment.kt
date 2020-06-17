@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Failure
@@ -12,8 +13,7 @@ import com.diwixis.filmlibrary.api.Load
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.api.Success
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieActivity
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailFragment
+import com.diwixis.filmlibrary.presentation.refactoring.MovieDetailDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
 
@@ -27,11 +27,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private val clickListener = object : MovieItemAdapter.IOnItemClick {
         override fun onItemClick(movie: Movie) {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainer, MovieDetailFragment().apply {
-                    arguments = Bundle().apply { putInt(MovieActivity.EXTRA_MOVIE_ID, movie.id) }
-                })
-                ?.commitNow()
+            MovieDetailDialogFragment.open(childFragmentManager, movie)
         }
     }
 

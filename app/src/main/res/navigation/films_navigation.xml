@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filmsNavigation"
+    app:startDestination="@+id/navigationMovies">
+
+    <fragment
+        android:id="@+id/navigationMovies"
+        android:name="com.diwixis.filmlibrary.presentation.movieList.MovieListFragment"
+        android:label="@string/popular_movies"
+        tools:layout="@layout/fragment_movie_list">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigationAbout"
+        android:name="com.diwixis.filmlibrary.presentation.about.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>
