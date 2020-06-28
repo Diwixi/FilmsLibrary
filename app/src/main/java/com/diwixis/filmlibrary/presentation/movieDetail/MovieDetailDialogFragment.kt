@@ -1,13 +1,12 @@
-package com.diwixis.filmlibrary.presentation.refactoring
+package com.diwixis.filmlibrary.presentation.movieDetail
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -17,10 +16,6 @@ import com.diwixis.filmlibrary.api.Load
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.api.Success
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieActivity
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailFragment
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_movie.*
 import org.koin.android.ext.android.inject
@@ -49,14 +44,6 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
 
     override fun getTheme() = R.style.BottomSheetDialogTheme
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setStyle(
-//            DialogFragment.STYLE_NORMAL,
-//            R.style.FullScreenDialogStyle
-//        )
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,7 +54,7 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.movie.observe(viewLifecycleOwner, movieObserver)
 
-        arguments?.getInt(MovieDetailFragment.EXTRA_MOVIE_ID, 0)?.let { movieId ->
+        arguments?.getInt(EXTRA_MOVIE_ID, 0)?.let { movieId ->
             viewModel.loadMovieById(movieId)
         }
     }
@@ -84,13 +71,16 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
     }
 
     companion object {
+        const val EXTRA_MOVIE_ID = "com.diwixis.filmlibrary.presentation.movieDetail.EXTRA_MOVIE_ID"
+
         fun open(
             fragmentManager: FragmentManager,
             movie: Movie
         ) {
-            val mBottomSheetDialog = MovieDetailDialogFragment().apply {
-                arguments = Bundle().apply { putInt(MovieActivity.EXTRA_MOVIE_ID, movie.id) }
-            }
+            val mBottomSheetDialog = MovieDetailDialogFragment()
+                .apply {
+                    arguments = bundleOf(MovieActivity.EXTRA_MOVIE_ID to movie.id)
+                }
             mBottomSheetDialog.show(fragmentManager, "MovieDetailDialogFragment")
         }
     }

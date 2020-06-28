@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Failure
@@ -13,7 +12,7 @@ import com.diwixis.filmlibrary.api.Load
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.api.Success
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.presentation.refactoring.MovieDetailDialogFragment
+import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
 
@@ -53,8 +52,13 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
         }
         with(viewModel) {
             movies.observe(viewLifecycleOwner, listMovieObserver)
-            loadPopularMovies()
+            when (arguments?.get("mode")) {
+                MoviesMode.TOP -> loadTopRateMovies()
+                MoviesMode.POP -> loadPopularMovies()
+            }
         }
         super.onViewCreated(view, savedInstanceState)
     }
+
+    enum class MoviesMode(value: String) { TOP("Top"), POP("Popular") }
 }

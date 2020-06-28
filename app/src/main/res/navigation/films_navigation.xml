@@ -7,10 +7,8 @@
 
     <fragment
         android:id="@+id/navigationMovies"
-        android:name="com.diwixis.filmlibrary.presentation.movieList.MovieListFragment"
-        android:label="@string/popular_movies"
-        tools:layout="@layout/fragment_movie_list">
-    </fragment>
+        android:name="com.diwixis.filmlibrary.MovieListPager" android:label="@string/popular_movies"
+        tools:layout="@layout/fragment_movie_list"/>
 
     <fragment
         android:id="@+id/navigationAbout"
