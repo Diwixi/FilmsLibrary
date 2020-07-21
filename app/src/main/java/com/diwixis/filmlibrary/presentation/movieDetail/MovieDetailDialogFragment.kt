@@ -1,10 +1,12 @@
 package com.diwixis.filmlibrary.presentation.movieDetail
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
@@ -16,9 +18,12 @@ import com.diwixis.filmlibrary.api.Load
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.api.Success
 import com.diwixis.filmlibrary.presentation.Movie
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_movie.*
 import org.koin.android.ext.android.inject
+
 
 /**
  *
@@ -43,6 +48,18 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun getTheme() = R.style.BottomSheetDialogTheme
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+
+        dialog.setOnShowListener { dialog ->
+            val d = dialog as BottomSheetDialog
+            val bottomSheet = d.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout
+            BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+        }
+
+        return dialog
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
