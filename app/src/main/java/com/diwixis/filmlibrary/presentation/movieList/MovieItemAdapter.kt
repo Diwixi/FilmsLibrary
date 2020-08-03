@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.presentation.Movie
+import com.diwixis.filmlibrary.setOnClick
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 /**
@@ -49,14 +50,11 @@ internal class MovieItemAdapter :
         fun onItemClick(movie: Movie)
     }
 
-    internal inner class ViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        override fun onClick(v: View) {
-            clickListener?.onItemClick(movieList[adapterPosition])
-        }
-
+    internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
-            itemView.setOnClickListener(this)
+            itemView.setOnClick(1000) {
+                clickListener?.onItemClick(movieList[adapterPosition])
+            }
             Glide.with(itemView.image)
                 .load(movie.posterPath)
                 .centerCrop()

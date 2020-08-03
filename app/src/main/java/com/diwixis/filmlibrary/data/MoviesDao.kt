@@ -1,12 +1,11 @@
 package com.diwixis.filmlibrary.data
 
 import androidx.room.*
+import com.diwixis.filmlibrary.data.MovieBean.Companion.COLUMN_NAME_MODE
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 import io.reactivex.Single
 
 /**
- * Сохранять сущности в базу и отдельно хранить списки id для top_rated
- * и для popular!
  *
  * @author П. Густокашин (Diwixis)
  */
@@ -15,6 +14,12 @@ interface MovieDao {
 
     @Query("SELECT * FROM $TABLE_MOVIE")
     fun getAll(): Single<List<MovieBean>>
+
+    @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_TOP'")
+    fun getTop(): Single<List<MovieBean>>
+
+    @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_POP'")
+    fun getPop(): Single<List<MovieBean>>
 
     @Query("SELECT * FROM $TABLE_MOVIE WHERE id = :id")
     fun getById(id: Int): Single<MovieBean>

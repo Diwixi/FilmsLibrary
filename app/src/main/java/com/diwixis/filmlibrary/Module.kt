@@ -25,8 +25,8 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    single { MovieGreedViewModel(get()) }
-    single { MovieDetailViewModel(get()) }
+    factory { MovieGreedViewModel(get()) }
+    factory { MovieDetailViewModel(get()) }
 }
 
 private val movieRetrofit: Retrofit
