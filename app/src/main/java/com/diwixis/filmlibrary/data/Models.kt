@@ -2,6 +2,7 @@ package com.diwixis.filmlibrary.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.diwixis.filmlibrary.BuildConfig
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
@@ -37,12 +38,18 @@ data class MovieBean(
     @ColumnInfo(name = COLUMN_NAME_OVERVIEW)
     @SerializedName(COLUMN_NAME_OVERVIEW)
     val overview: String? = null,
+    @ColumnInfo(name = COLUMN_NAME_RELEASE_DATE)
     @SerializedName(COLUMN_NAME_RELEASE_DATE)
     val releaseDate: String? = null,
+    @ColumnInfo(name = COLUMN_NAME_ORDINAL_TITLE)
     @SerializedName(COLUMN_NAME_ORDINAL_TITLE)
     val originalTitle: String? = null,
+    @ColumnInfo(name = COLUMN_NAME_POPULARITY)
     @SerializedName(COLUMN_NAME_POPULARITY)
-    val popularity: Double? = null
+    val popularity: Double? = null,
+    @ColumnInfo(name = COLUMN_NAME_MODE)
+    @SerializedName(COLUMN_NAME_MODE)
+    var mode: String? = null // I can't thing anything better. This for separate TOP and POPULAR
 ) {
     companion object {
         const val TABLE_MOVIE = "movie"
@@ -53,6 +60,7 @@ data class MovieBean(
         const val COLUMN_NAME_RELEASE_DATE = "release_date"
         const val COLUMN_NAME_ORDINAL_TITLE = "original_title"
         const val COLUMN_NAME_POPULARITY = "popularity"
+        const val COLUMN_NAME_MODE = "mode"
     }
 }
 

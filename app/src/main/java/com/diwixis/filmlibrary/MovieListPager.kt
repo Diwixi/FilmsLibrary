@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment
+import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment.Companion.MODE
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_movies_pager.*
 
@@ -33,7 +34,7 @@ class ViewPagerFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapte
     )
 
     override fun createFragment(position: Int): Fragment = MovieListFragment().apply {
-        arguments = bundleOf("mode" to types[position])
+        arguments = bundleOf(MODE to types[position])
     }
 
     override fun getItemCount(): Int = types.size

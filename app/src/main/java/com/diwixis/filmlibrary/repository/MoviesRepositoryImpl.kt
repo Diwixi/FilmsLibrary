@@ -14,26 +14,29 @@ class MoviesRepositoryImpl(
 ) : MoviesRepository {
 
     override fun getTopRateMovies() = api.getTopRatedMovies(Params.movieParams)
-        .map { it.movies }
+        .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_TOP } } }
         .doOnSuccess { movies ->
-            db.movieDao().deleteAll()
             db.movieDao().insertAll(movies)
         }
         .map { it.map() }
         .onErrorResumeNext {
-            db.movieDao().getAll().map { it.map() }
+            db.movieDao().getTop().map { it.map() }
         }
 
     override fun getpopularMovies() = api.getPopularMovies(Params.movieParams)
-        .map { it.movies }
+        .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_POP } } }
         .doOnSuccess { movies ->
-            db.movieDao().deleteAll()
             db.movieDao().insertAll(movies)
         }
         .map { it.map() }
         .onErrorResumeNext {
-            db.movieDao().getAll().map { it.map() }
+            db.movieDao().getPop().map { it.map() }
         }
 
     override fun getmovieById(movieId: Int) = db.movieDao().getById(movieId).map { it.map() }
+
+    companion object {
+        const val MODE_TOP = "MODE_TOP"
+        const val MODE_POP = "MODE_POP"
+    }
 }
