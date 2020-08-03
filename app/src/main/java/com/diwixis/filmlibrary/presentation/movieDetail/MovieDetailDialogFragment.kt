@@ -21,7 +21,7 @@ import com.diwixis.filmlibrary.presentation.Movie
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_movie.*
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import org.koin.android.ext.android.inject
 
 
@@ -90,13 +90,10 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
     companion object {
         const val EXTRA_MOVIE_ID = "com.diwixis.filmlibrary.presentation.movieDetail.EXTRA_MOVIE_ID"
 
-        fun open(
-            fragmentManager: FragmentManager,
-            movie: Movie
-        ) {
+        fun open(fragmentManager: FragmentManager, movie: Movie) {
             val mBottomSheetDialog = MovieDetailDialogFragment()
                 .apply {
-                    arguments = bundleOf(MovieActivity.EXTRA_MOVIE_ID to movie.id)
+                    arguments = bundleOf(EXTRA_MOVIE_ID to movie.id)
                 }
             mBottomSheetDialog.show(fragmentManager, "MovieDetailDialogFragment")
         }
