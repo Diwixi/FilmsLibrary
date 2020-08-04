@@ -9,3 +9,12 @@ What the next?
 * add animations
 * add paginations
 * add a detail screen for a movie
+
+Done:
+* paging for top and pop
+* a bottomsheet instead an activity
+* separate top and pop movies in database
+* Livedata
+* RxJava
+* try MotionLayout
+* bottom navigation
