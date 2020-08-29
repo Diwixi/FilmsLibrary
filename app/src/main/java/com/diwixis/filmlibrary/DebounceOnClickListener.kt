@@ -2,12 +2,7 @@ package com.diwixis.filmlibrary
 
 import android.view.View
 
-/**
- * for debouncing on click
- *
- * @author П. Густокашин (Diwixis)
- */
-class DebouncingOnClickListener(
+class DebounceOnClickListener(
     private val intervalMillis: Long,
     private val doClick: ((View) -> Unit)
 ) : View.OnClickListener {
@@ -27,10 +22,6 @@ class DebouncingOnClickListener(
     }
 }
 
-fun View.setOnClick(intervalMillis: Long = 0, doClick: (View) -> Unit) =
-    setOnClickListener(
-        DebouncingOnClickListener(
-            intervalMillis = intervalMillis,
-            doClick = doClick
-        )
-    )
+fun View.setOnClick(intervalMillis: Long = 0, doClick: (View) -> Unit) = setOnClickListener(
+    DebounceOnClickListener(intervalMillis = intervalMillis, doClick = doClick)
+)

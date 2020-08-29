@@ -24,32 +24,31 @@ object Network {
                     //take action when network connection is gained
                 }
 
-                override fun onLost(network: Network?) {
-                    //take action when network connection is lost
+                override fun onLost(network: Network) {
+                    //super.onLost(network)
                 }
             })
         }
     }
 
-    fun createNetworkClient(baseUrl: String) =
-        retrofitClient(
-            baseUrl,
-            httpClient(),
-            GsonConverterFactory.create()
-        )
+    fun createNetworkClient(baseUrl: String): Retrofit = retrofitClient(
+        baseUrl,
+        httpClient(),
+        GsonConverterFactory.create()
+    )
 
-    fun createNetworkClient(baseUrl: String, gson: GsonConverterFactory) =
-        retrofitClient(
-            baseUrl,
-            httpClient(),
-            gson
-        )
+    fun createNetworkClient(baseUrl: String, gson: GsonConverterFactory): Retrofit = retrofitClient(
+        baseUrl,
+        httpClient(),
+        gson
+    )
 
-    private fun httpClient() =
-        OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
+    private fun httpClient() = OkHttpClient.Builder().addInterceptor(
+        HttpLoggingInterceptor().apply {
             //TODO use only for DEBUG
             level = HttpLoggingInterceptor.Level.BODY
-        }).build()
+        }
+    ).build()
 
     private fun retrofitClient(
         baseUrl: String,

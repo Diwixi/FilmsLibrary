@@ -5,10 +5,6 @@ import com.diwixis.filmlibrary.data.MovieBean.Companion.COLUMN_NAME_MODE
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 import io.reactivex.Single
 
-/**
- *
- * @author П. Густокашин (Diwixis)
- */
 @Dao
 interface MovieDao {
 

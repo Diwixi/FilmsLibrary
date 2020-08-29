@@ -6,9 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.QueryMap
 import java.util.*
 
-/**
- * Created by Diwixis on 18.04.2017.
- */
 interface TmdbApi {
     @GET(Urls.MOVIE_POPULAR)
     fun getPopularMovies(@QueryMap params: HashMap<String, String>): Single<MoviesBean>

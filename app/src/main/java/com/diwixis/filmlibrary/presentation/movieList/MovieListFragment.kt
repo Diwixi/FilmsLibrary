@@ -51,16 +51,15 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
             adapter = MovieItemAdapter().apply { setClickListener(clickListener) }
         }
         with(viewModel) {
-            movies.observe(viewLifecycleOwner, listMovieObserver)
             when (arguments?.get(MODE)) {
-                MoviesMode.TOP -> loadTopRateMovies()
-                MoviesMode.POP -> loadPopularMovies()
+                MoviesMode.TOP -> loadTopRateMovies().observe(viewLifecycleOwner, listMovieObserver)
+                MoviesMode.POP -> loadPopularMovies().observe(viewLifecycleOwner, listMovieObserver)
             }
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    enum class MoviesMode { TOP, POP }
+    enum class MoviesMode(val fullName: String) { TOP("Top rates"), POP("Popular") }
 
     companion object {
         const val MODE = "mode"

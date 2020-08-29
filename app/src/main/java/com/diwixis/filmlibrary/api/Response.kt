@@ -1,10 +1,5 @@
 package com.diwixis.filmlibrary.api
 
-/**
- *
- *
- * @author П. Густокашин (Diwixis)
- */
 @Suppress(names = ["unused"])
 sealed class Response<out T> {
     companion object {

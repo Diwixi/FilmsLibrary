@@ -11,19 +11,13 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
-/**
- *
- *
- * @author П. Густокашин (Diwixis)
- */
 class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val rxDisposables = CompositeDisposable()
 
     private val _movies: MutableLiveData<Response<List<Movie>>> = MutableLiveData()
-    val movies: LiveData<Response<List<Movie>>> = _movies
 
-    fun loadTopRateMovies() {
+    fun loadTopRateMovies(): LiveData<Response<List<Movie>>> {
         repository.getTopRateMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -36,10 +30,11 @@ class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel(
                     _movies.value = Response.failure(it)
                 }
             ).addTo(rxDisposables)
+        return _movies
     }
 
-    fun loadPopularMovies() {
-        repository.getpopularMovies()
+    fun loadPopularMovies(): LiveData<Response<List<Movie>>> {
+        repository.getPopularMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _movies.value = Response.load() }
@@ -51,6 +46,7 @@ class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel(
                     _movies.value = Response.failure(it)
                 }
             ).addTo(rxDisposables)
+        return _movies
     }
 
     override fun onCleared() {

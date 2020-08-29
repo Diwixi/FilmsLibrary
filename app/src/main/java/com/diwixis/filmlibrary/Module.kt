@@ -1,5 +1,6 @@
 package com.diwixis.filmlibrary
 
+import com.diwixis.filmlibrary.BuildConfig.API_BASE_URL
 import com.diwixis.filmlibrary.api.Network.createNetworkClient
 import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
@@ -30,6 +31,6 @@ val viewModelModule = module {
 }
 
 private val movieRetrofit: Retrofit
-    get() = createNetworkClient(BuildConfig.API_BASE_URL)
+    get() = createNetworkClient(API_BASE_URL)
 
 private val movieApi: TmdbApi = movieRetrofit.create(TmdbApi::class.java)

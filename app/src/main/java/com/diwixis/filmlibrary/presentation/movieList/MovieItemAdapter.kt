@@ -4,17 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.setOnClick
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-/**
- * Created by Diwixis on 18.04.2017.
- */
-internal class MovieItemAdapter :
-    RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
+internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
     private var movieList: List<Movie> = emptyList()
     private var clickListener: IOnItemClick? = null
 
@@ -55,11 +52,12 @@ internal class MovieItemAdapter :
             itemView.setOnClick(1000) {
                 clickListener?.onItemClick(movieList[adapterPosition])
             }
-            Glide.with(itemView.image)
-                .load(movie.posterPath)
-                .centerCrop()
-                .into(itemView.image)
             itemView.image.requestLayout()
+            itemView.itemTitle.text = movie.title
+
+            itemView.image.load(movie.posterPath) {
+                transformations(RoundedCornersTransformation(16f))
+            }
         }
     }
 }

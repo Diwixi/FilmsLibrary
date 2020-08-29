@@ -3,9 +3,6 @@ package com.diwixis.filmlibrary.api
 import com.diwixis.filmlibrary.BuildConfig
 import java.util.*
 
-/**
- * Created by Diwixis on 19.04.2017.
- */
 object Params {
     val movieParams: HashMap<String, String>
         get() {

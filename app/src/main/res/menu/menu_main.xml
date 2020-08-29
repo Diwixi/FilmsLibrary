@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu tools:context=".MainActivity"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".MainActivity">
+
     <item
-    android:id="@+id/item_popular"
-    android:orderInCategory="100"
-    android:title="@string/popular_movies"
-    app:showAsAction="never"/>
+        android:id="@+id/item_popular"
+        android:orderInCategory="100"
+        android:title="@string/popular_movies"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/item_top_rated"
         android:orderInCategory="100"
         android:title="@string/top_rated_movies"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

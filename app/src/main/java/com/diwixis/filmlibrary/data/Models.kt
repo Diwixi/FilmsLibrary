@@ -10,11 +10,6 @@ import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.presentation.Movies
 import com.google.gson.annotations.SerializedName
 
-/**
- * Room models
- *
- * @author П. Густокашин (Diwixis)
- */
 data class MoviesBean(
     @ColumnInfo(name = "page")
     @SerializedName("page") val page: Int,

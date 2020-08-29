@@ -7,4 +7,7 @@
     <string name="popularity_text">Populary:</string>
     <string name="day_out">Release date:</string>
     <string name="about">About</string>
+    <string name="show_more">show more</string>
+    <string name="tab_movies">Movies</string>
+    <string name="tab_about">About</string>
 </resources>

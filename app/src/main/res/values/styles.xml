@@ -1,11 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeTransparentNoActionBar" parent="AppTheme">
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/cardview_shadow_end_color</item>
+        <item name="android:statusBarColor">@color/cardview_shadow_end_color</item>
     </style>
 
     <style name="FullScreenDialogStyle" parent="AppTheme">
@@ -24,6 +33,4 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
-
-    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
 </resources>

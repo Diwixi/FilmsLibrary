@@ -11,18 +11,13 @@ import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment.Companio
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_movies_pager.*
 
-/**
- *
- *
- * @author П. Густокашин (Diwixis)
- */
 class MovieListPager : Fragment(R.layout.fragment_movies_pager) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewPager2.adapter = ViewPagerFragmentAdapter(requireActivity())
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            tab.text = MovieListFragment.MoviesMode.values()[position].toString()
+            tab.text = MovieListFragment.MoviesMode.values()[position].fullName
         }.attach()
     }
 }

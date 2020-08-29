@@ -11,20 +11,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
-/**
- * 29.05.2020
- *
- * @author П. Густокашин (Diwixis)
- */
 class MovieDetailViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val rxDisposables = CompositeDisposable()
 
     private val _movie: MutableLiveData<Response<Movie>> = MutableLiveData()
-    val movie: LiveData<Response<Movie>> = _movie
 
-    fun loadMovieById(movieId: Int) {
-        repository.getmovieById(movieId)
+    fun loadMovieById(movieId: Int): LiveData<Response<Movie>> {
+        repository.getMovieById(movieId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _movie.value = Response.load() }
@@ -37,5 +31,6 @@ class MovieDetailViewModel(private val repository: MoviesRepository) : ViewModel
                     _movie.value = Response.failure(it)
                 }
             ).addTo(rxDisposables)
+        return _movie
     }
 }

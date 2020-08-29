@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val navView: BottomNavigationView = findViewById(R.id.bottomNav)
 
         val navController = findNavController(R.id.navHostFragment)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigationMovies, R.id.navigationAbout)
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }
