@@ -12,15 +12,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import coil.load
-import coil.transform.RoundedCornersTransformation
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.api.Failure
 import com.diwixis.filmlibrary.api.Load
 import com.diwixis.filmlibrary.api.Response
 import com.diwixis.filmlibrary.api.Success
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.setOnClick
-import com.diwixis.filmlibrary.toast
+import com.diwixis.filmlibrary.utils.setOnClick
+import com.diwixis.filmlibrary.utils.toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

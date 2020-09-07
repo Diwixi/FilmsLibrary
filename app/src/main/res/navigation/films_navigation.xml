@@ -7,12 +7,19 @@
 
     <fragment
         android:id="@+id/navigationMovies"
-        android:name="com.diwixis.filmlibrary.MovieListPager" android:label="@string/popular_movies"
+        android:name="com.diwixis.filmlibrary.MovieListPagerFragment"
+        android:label="@string/popular_movies"
         tools:layout="@layout/fragment_movie_list"/>
 
     <fragment
+        android:id="@+id/navigationCustomView"
+        android:name="com.diwixis.CustomViewFragment"
+        android:label="CustomView"
+        tools:layout="@layout/fragment_custom_view"/>
+
+    <fragment
         android:id="@+id/navigationAbout"
-        android:name="com.diwixis.filmlibrary.presentation.about.AboutFragment"
+        android:name="com.diwixis.about.AboutFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_about" />
 

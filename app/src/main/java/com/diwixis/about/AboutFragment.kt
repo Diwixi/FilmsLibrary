@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.presentation.about
+package com.diwixis.about
 
 import android.os.Bundle
 import android.view.View

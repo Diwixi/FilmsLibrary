@@ -8,7 +8,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.setOnClick
+import com.diwixis.filmlibrary.utils.setOnClick
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {

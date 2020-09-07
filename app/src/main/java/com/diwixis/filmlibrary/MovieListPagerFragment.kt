@@ -11,7 +11,7 @@ import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment.Companio
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_movies_pager.*
 
-class MovieListPager : Fragment(R.layout.fragment_movies_pager) {
+class MovieListPagerFragment : Fragment(R.layout.fragment_movies_pager) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
