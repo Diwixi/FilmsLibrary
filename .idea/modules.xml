@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FilmsLibrary-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FilmsLibrary-app.iml" group="FilmsLibrary/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects-FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects-FilmsLibrary.iml" group="FilmsLibrary" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FilmsLibrary/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/custom_view/custom_view.iml" filepath="$PROJECT_DIR$/.idea/modules/custom_view/custom_view.iml" group="FilmsLibrary/custom_view" />
     </modules>
   </component>
 </project>

@@ -6,6 +6,11 @@
         android:title="" />
 
     <item
+        android:id="@+id/navigationCustomView"
+        android:icon="@drawable/ic_custom_view"
+        android:title="" />
+
+    <item
         android:id="@+id/navigationAbout"
         android:icon="@drawable/ic_about"
         android:title="" />

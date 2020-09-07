@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary
+package com.diwixis.filmlibrary.di
 
 import com.diwixis.filmlibrary.BuildConfig.API_BASE_URL
 import com.diwixis.filmlibrary.api.Network.createNetworkClient
