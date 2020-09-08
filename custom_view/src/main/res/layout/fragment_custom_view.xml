@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.diwixis.animations.equalizer.EqualizerView
+    <com.diwixis.views.equalizer.EqualizerView
         android:id="@+id/customView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.diwixis.animations.number.NumberView
+    <com.diwixis.views.number.NumberView
         android:id="@+id/numberView"
         android:layout_width="100dp"
         android:layout_height="200dp"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.diwixis.animations.clock.ClockView
+    <com.diwixis.views.clock.ClockView
         android:id="@+id/clock"
         android:layout_width="match_parent"
         android:layout_height="200dp"

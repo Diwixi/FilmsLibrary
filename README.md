@@ -11,6 +11,7 @@ What the next?
 * add a detail screen for a movie
 
 Done:
+* a tab was added where I trained how to create custom views.
 * paging for top and pop
 * a bottomsheet instead an activity
 * separate top and pop movies in database

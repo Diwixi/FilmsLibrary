@@ -1,4 +1,4 @@
-package com.diwixis.animations.number
+package com.diwixis.views.number
 
 import android.content.Context
 import android.graphics.*
