@@ -1,4 +1,4 @@
-package com.diwixis.animations.equalizer
+package com.diwixis.views.equalizer
 
 import android.content.Context
 import android.graphics.*

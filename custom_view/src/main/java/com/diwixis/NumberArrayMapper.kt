@@ -73,7 +73,7 @@ private val SIX = arrayOf(
 
 private val SEVEN = arrayOf(
     arrayOf(true, true, true),
-    arrayOf(true, false, true),
+    arrayOf(false, false, true),
     arrayOf(false, false, true),
     arrayOf(false, false, true),
     arrayOf(false, false, true),
@@ -91,6 +91,6 @@ private val NINE = arrayOf(
     arrayOf(true, true, true),
     arrayOf(true, false, true),
     arrayOf(true, true, true),
-    arrayOf(true, false, false),
-    arrayOf(true, true, false),
+    arrayOf(false, false, true),
+    arrayOf(false, false, true),
 )

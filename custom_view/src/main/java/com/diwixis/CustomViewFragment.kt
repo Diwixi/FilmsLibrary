@@ -40,21 +40,7 @@ class CustomViewFragment : Fragment(R.layout.fragment_custom_view) {
                 numberView.update(data)
             }
 
-        val numbersClock = Observable.interval(1200, TimeUnit.MILLISECONDS)
-            .map {
-                listOf(
-                    Random.nextInt(0, 9),
-                    Random.nextInt(0, 9),
-                    Random.nextInt(0, 9),
-                    Random.nextInt(0, 9)
-                )
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { data ->
-                clock.update(data[0], data[1], data[2], data[3])
-            }
-
-        compositeDisposable.addAll(equalizer, numbers, numbersClock)
+        compositeDisposable.addAll(equalizer, numbers)
     }
 
     override fun onStop() {
