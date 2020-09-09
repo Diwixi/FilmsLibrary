@@ -22,7 +22,7 @@ class BlinkDotsItem {
 
     private fun blinkStart() {
         animator = ValueAnimator.ofFloat(value, 1f).apply {
-            duration = 1000L
+            duration = 400L
             interpolator = DecelerateInterpolator()
             addUpdateListener { setValue(it.animatedValue as Float) }
             doOnEnd { blinkEnd() }
@@ -32,7 +32,7 @@ class BlinkDotsItem {
 
     private fun blinkEnd() {
         animator = ValueAnimator.ofFloat(value, 0.9f).apply {
-            duration = 1000L
+            duration = 600L
             interpolator = AccelerateInterpolator()
             addUpdateListener { setValue(it.animatedValue as Float) }
             doOnEnd { blinkStart() }
