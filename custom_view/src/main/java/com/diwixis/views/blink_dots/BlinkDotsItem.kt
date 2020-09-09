@@ -3,13 +3,13 @@ package com.diwixis.views.blink_dots
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 
-class DotItem {
+class BlinkDotsItem {
     private var _value: Float = 0f
     val value: Float
         get() = _value
-
-    var isExpand = false
 
     private var animator: Animator? = null
 
@@ -20,30 +20,28 @@ class DotItem {
         doOnValueUpdateAction()
     }
 
-    private fun expand() {
-        animate(1f)
-    }
-
-    private fun collapse() {
-        animate(0f)
-    }
-
-    private fun animate(newValue: Float) {
-        animator = ValueAnimator.ofFloat(value, newValue).apply {
-            duration = 990L
-            interpolator = AccelerateInterpolator()
+    private fun blinkStart() {
+        animator = ValueAnimator.ofFloat(value, 1f).apply {
+            duration = 1000L
+            interpolator = DecelerateInterpolator()
             addUpdateListener { setValue(it.animatedValue as Float) }
+            doOnEnd { blinkEnd() }
             start()
         }
-
-        isExpand = false
     }
 
-    fun update(isExpand: Boolean) {
-        if (isExpand == this.isExpand) return
+    private fun blinkEnd() {
+        animator = ValueAnimator.ofFloat(value, 0.9f).apply {
+            duration = 1000L
+            interpolator = AccelerateInterpolator()
+            addUpdateListener { setValue(it.animatedValue as Float) }
+            doOnEnd { blinkStart() }
+            start()
+        }
+    }
 
-        if (isExpand) expand() else collapse()
-        this.isExpand = isExpand
+    fun start() {
+        blinkStart()
     }
 
     fun onDetachedFromWindow() {
