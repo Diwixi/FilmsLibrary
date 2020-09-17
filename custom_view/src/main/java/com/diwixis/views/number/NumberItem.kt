@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.view.animation.AccelerateInterpolator
 
-class NumberItem {
+internal class NumberItem {
     private var _value: Float = 0f
     val value: Float
         get() = _value

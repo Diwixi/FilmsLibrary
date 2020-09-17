@@ -3,12 +3,13 @@ package com.diwixis.filmlibrary.presentation.movieList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.utils.setOnClick
+import com.diwixis.filmlibrary.domain.utils.setOnClick
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
@@ -57,6 +58,22 @@ internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHold
 
             itemView.image.load(movie.posterPath) {
                 transformations(RoundedCornersTransformation(16f))
+            }
+        }
+    }
+
+    companion object {
+        val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun getChangePayload(oldItem: Movie, newItem: Movie): Any? {
+                return null
             }
         }
     }

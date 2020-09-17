@@ -2,22 +2,12 @@ package com.diwixis.filmlibrary.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.diwixis.filmlibrary.BuildConfig
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.presentation.Movies
 import com.google.gson.annotations.SerializedName
 
-data class MoviesBean(
-    @ColumnInfo(name = "page")
-    @SerializedName("page") val page: Int,
-    @ColumnInfo(name = "results")
-    @SerializedName("results") val movies: List<MovieBean> = emptyList()
-)
-
-fun MoviesBean.map() = Movies(page = page, movies = movies.map { it.map() })
 
 @Entity(tableName = TABLE_MOVIE)
 data class MovieBean(

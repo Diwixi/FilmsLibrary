@@ -1,7 +1,7 @@
 package com.diwixis
 
 
-fun Int.toArray() = when (this) {
+internal fun Int.toArray() = when (this) {
     0 -> ZERO
     1 -> ONE
     2 -> TWO

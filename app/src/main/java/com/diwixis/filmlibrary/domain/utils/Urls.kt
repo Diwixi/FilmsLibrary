@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.api
+package com.diwixis.filmlibrary.domain.utils
 
 object Urls {
     const val MOVIE_POPULAR = "/3/movie/popular"

@@ -3,21 +3,23 @@ package com.diwixis.filmlibrary.presentation.movieList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.diwixis.filmlibrary.api.Response
+import com.diwixis.filmlibrary.domain.utils.Response
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.repository.MoviesRepository
+import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
-class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel() {
+typealias MovieResponse = Response<List<Movie>>
+
+internal class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val rxDisposables = CompositeDisposable()
 
-    private val _movies: MutableLiveData<Response<List<Movie>>> = MutableLiveData()
+    private val _movies: MutableLiveData<MovieResponse> = MutableLiveData()
 
-    fun loadTopRateMovies(): LiveData<Response<List<Movie>>> {
+    fun loadTopRateMovies(page: Int = 1): LiveData<MovieResponse> {
         repository.getTopRateMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -33,7 +35,7 @@ class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel(
         return _movies
     }
 
-    fun loadPopularMovies(): LiveData<Response<List<Movie>>> {
+    fun loadPopularMovies(): LiveData<MovieResponse> {
         repository.getPopularMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

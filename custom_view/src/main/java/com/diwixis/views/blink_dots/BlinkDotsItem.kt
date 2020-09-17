@@ -6,7 +6,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
 
-class BlinkDotsItem {
+internal class BlinkDotsItem {
     private var _value: Float = 0f
     val value: Float
         get() = _value

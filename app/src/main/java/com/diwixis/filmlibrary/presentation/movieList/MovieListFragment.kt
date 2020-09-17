@@ -5,16 +5,17 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.api.Failure
-import com.diwixis.filmlibrary.api.Load
-import com.diwixis.filmlibrary.api.Response
-import com.diwixis.filmlibrary.api.Success
+import com.diwixis.filmlibrary.domain.utils.Failure
+import com.diwixis.filmlibrary.domain.utils.Load
+import com.diwixis.filmlibrary.domain.utils.Response
+import com.diwixis.filmlibrary.domain.utils.Success
 import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
+
 
 /**
  * 03.06.2020
@@ -47,8 +48,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(recycler) {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(activity, 2)
-            adapter = MovieItemAdapter().apply { setClickListener(clickListener) }
+            layoutManager = LinearLayoutManager(activity)
+            adapter = MovieItemAdapter().apply {
+                setClickListener(clickListener)
+            }
         }
         with(viewModel) {
             when (arguments?.get(MODE)) {
