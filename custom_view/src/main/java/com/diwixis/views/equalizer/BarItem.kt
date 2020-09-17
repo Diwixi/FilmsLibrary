@@ -7,7 +7,7 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
 import kotlin.math.abs
 
-class BarItem {
+internal class BarItem {
     private var _value: Float = 0f
     val value: Float
         get() = _value

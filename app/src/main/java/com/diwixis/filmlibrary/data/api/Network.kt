@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.api
+package com.diwixis.filmlibrary.data.api
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.diwixis.toArray
 
-class NumberView @JvmOverloads constructor(
+internal class NumberView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
     private val items =
@@ -65,5 +65,12 @@ class NumberView @JvmOverloads constructor(
                 numberItem.update(numArray[row][col])
             }
         }
+    }
+
+    fun changeWidth(newWidth: Int) {
+        val layoutParams = layoutParams
+        layoutParams.width = newWidth
+        setLayoutParams(layoutParams)
+        invalidate()
     }
 }

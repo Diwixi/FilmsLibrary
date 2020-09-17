@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary
+package com.diwixis.filmlibrary.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment
 import com.diwixis.filmlibrary.presentation.movieList.MovieListFragment.Companion.MODE
 import com.google.android.material.tabs.TabLayoutMediator

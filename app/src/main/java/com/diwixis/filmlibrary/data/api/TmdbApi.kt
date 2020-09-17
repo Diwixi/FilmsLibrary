@@ -1,6 +1,7 @@
-package com.diwixis.filmlibrary.api
+package com.diwixis.filmlibrary.data.api
 
-import com.diwixis.filmlibrary.data.MoviesBean
+import com.diwixis.filmlibrary.domain.MoviesBean
+import com.diwixis.filmlibrary.domain.utils.Urls
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

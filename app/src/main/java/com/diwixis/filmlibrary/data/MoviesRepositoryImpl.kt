@@ -1,16 +1,15 @@
-package com.diwixis.filmlibrary.repository
+package com.diwixis.filmlibrary.data
 
-import com.diwixis.filmlibrary.api.Params
-import com.diwixis.filmlibrary.api.TmdbApi
-import com.diwixis.filmlibrary.data.Database
-import com.diwixis.filmlibrary.data.map
+import com.diwixis.filmlibrary.domain.utils.Params
+import com.diwixis.filmlibrary.data.api.TmdbApi
+import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 
 class MoviesRepositoryImpl(
     private val db: Database,
     private val api: TmdbApi
 ) : MoviesRepository {
 
-    override fun getTopRateMovies() = api.getTopRatedMovies(Params.movieParams)
+    override fun getTopRateMovies(page: Int) = api.getTopRatedMovies(Params.getParamsWithPage(page))
         .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_TOP } } }
         .doOnSuccess { movies ->
             db.movieDao().insertAll(movies)
@@ -20,7 +19,7 @@ class MoviesRepositoryImpl(
             db.movieDao().getTop().map { it.map() }
         }
 
-    override fun getPopularMovies() = api.getPopularMovies(Params.movieParams)
+    override fun getPopularMovies(page: Int) = api.getPopularMovies(Params.movieParams)
         .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_POP } } }
         .doOnSuccess { movies ->
             db.movieDao().insertAll(movies)

@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import java.lang.IllegalStateException
 
-class EqualizerView @JvmOverloads constructor(
+internal class EqualizerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
     private var bars = emptyList<BarItem>()

@@ -3,9 +3,9 @@ package com.diwixis.filmlibrary.presentation.movieDetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.diwixis.filmlibrary.api.Response
+import com.diwixis.filmlibrary.domain.utils.Response
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.repository.MoviesRepository
+import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo

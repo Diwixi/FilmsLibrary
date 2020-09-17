@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.api
+package com.diwixis.filmlibrary.domain.utils
 
 @Suppress(names = ["unused"])
 sealed class Response<out T> {

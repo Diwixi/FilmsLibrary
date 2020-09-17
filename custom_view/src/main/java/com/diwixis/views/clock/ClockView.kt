@@ -3,17 +3,15 @@ package com.diwixis.views.clock
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.diwixis.views.number.NumberView
 import com.diwixis.filmlibrary.custom_view.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_custom_view.*
 import kotlinx.android.synthetic.main.view_clock.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class ClockView @JvmOverloads constructor(
+internal class ClockView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
@@ -75,11 +73,4 @@ class ClockView @JvmOverloads constructor(
         minutes1.update(num3)
         minutes2.update(num4)
     }
-}
-
-fun NumberView.changeWidth(newWidth: Int) {
-    val layoutParams = layoutParams
-    layoutParams.width = newWidth
-    setLayoutParams(layoutParams)
-    invalidate()
 }
