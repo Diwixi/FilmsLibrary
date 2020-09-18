@@ -4,22 +4,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.domain.utils.setOnClick
+import com.diwixis.filmlibrary.presentation.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHolder>() {
-    private var movieList: List<Movie> = emptyList()
+internal class MovieItemAdapter :
+    ListAdapter<Movie, MovieItemAdapter.ViewHolder>(MOVIE_COMPARATOR) {
+    //    private var movieList: MutableList<Movie> = mutableListOf()
     private var clickListener: IOnItemClick? = null
 
-    fun setData(list: List<Movie>) {
-        movieList = list
-        notifyDataSetChanged()
-    }
+//    fun setData(list: List<Movie>) {
+//        movieList.addAll(list)
+//        notifyDataSetChanged()
+//    }
 
     fun setClickListener(listener: IOnItemClick?) {
         clickListener = listener
@@ -39,10 +41,8 @@ internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHold
         holder: ViewHolder,
         position: Int
     ) {
-        holder.bind(movieList[position])
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount() = movieList.size
 
     interface IOnItemClick {
         fun onItemClick(movie: Movie)
@@ -51,7 +51,7 @@ internal class MovieItemAdapter : RecyclerView.Adapter<MovieItemAdapter.ViewHold
     internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
             itemView.setOnClick(1000) {
-                clickListener?.onItemClick(movieList[adapterPosition])
+                clickListener?.onItemClick(getItem(adapterPosition))
             }
             itemView.image.requestLayout()
             itemView.itemTitle.text = movie.title

@@ -9,7 +9,7 @@ class MoviesRepositoryImpl(
     private val api: TmdbApi
 ) : MoviesRepository {
 
-    override fun getTopRateMovies(page: Int) = api.getTopRatedMovies(Params.getParamsWithPage(page))
+    override fun getTopRateMovies(page: Int) = api.getTopRatedMovies(Params.getParams(page))
         .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_TOP } } }
         .doOnSuccess { movies ->
             db.movieDao().insertAll(movies)
@@ -19,7 +19,7 @@ class MoviesRepositoryImpl(
             db.movieDao().getTop().map { it.map() }
         }
 
-    override fun getPopularMovies(page: Int) = api.getPopularMovies(Params.movieParams)
+    override fun getPopularMovies(page: Int) = api.getPopularMovies(Params.getParams(page))
         .map { it.movies.also { list -> list.forEach { item -> item.mode = MODE_POP } } }
         .doOnSuccess { movies ->
             db.movieDao().insertAll(movies)
