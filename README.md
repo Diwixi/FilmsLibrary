@@ -6,6 +6,9 @@ What the next?
 * add splash screen and the app icon
 * add tests
 * add a detail screen for a movie
+* coroutines
+* flow (after coroutines)
+* (maybe) kotlin multiplatform
 
 Done:
 * a tab was added where I trained how to create custom views.
