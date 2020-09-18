@@ -6,7 +6,7 @@ import kotlin.collections.HashMap
 typealias Param = HashMap<String, String>
 
 object Params {
-    val movieParams: Param
+    private val movieParams: Param
         get() {
             val hashMap = Param()
             hashMap[API_KEY] = BuildConfig.API_KEY
@@ -15,7 +15,7 @@ object Params {
             return hashMap
         }
 
-    fun getParamsWithPage(page: Int): Param {
+    fun getParams(page: Int): Param {
         return if (page == 1) {
             movieParams
         } else {

@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.domain.utils.Failure
 import com.diwixis.filmlibrary.domain.utils.Load
@@ -21,7 +22,8 @@ import org.koin.android.ext.android.inject
  * 03.06.2020
  * @author П. Густокашин (Diwixis)
  */
-class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
+class MovieListFragment : Fragment(R.layout.fragment_movie_list),
+    SwipeRefreshLayout.OnRefreshListener {
 
     private val viewModel by inject<MovieGreedViewModel>()
 
@@ -31,12 +33,15 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
         }
     }
 
-    private val listMovieObserver = Observer<Response<List<Movie>>> {
-        when (it) {
+    private val listMovieObserver = Observer<Response<List<Movie>>> { response ->
+        when (response) {
             is Load -> progressBar.isVisible = true
             is Success -> {
                 progressBar.isVisible = false
-                (recycler.adapter as MovieItemAdapter).setData(it.value)
+                val adapter = (recycler.adapter as MovieItemAdapter)
+                val newList = adapter.currentList.toMutableList()
+                newList.addAll(response.value)
+                adapter.submitList(newList)
             }
             is Failure -> {
                 progressBar.isVisible = false
@@ -46,15 +51,19 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val mode = arguments?.get(MODE) as MoviesMode
         with(recycler) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
             adapter = MovieItemAdapter().apply {
                 setClickListener(clickListener)
             }
+            addOnScrollListener(
+                viewModel.getPaginationListener(layoutManager as LinearLayoutManager, mode)
+            )
         }
         with(viewModel) {
-            when (arguments?.get(MODE)) {
+            when (mode) {
                 MoviesMode.TOP -> loadTopRateMovies().observe(viewLifecycleOwner, listMovieObserver)
                 MoviesMode.POP -> loadPopularMovies().observe(viewLifecycleOwner, listMovieObserver)
             }
@@ -66,5 +75,9 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     companion object {
         const val MODE = "mode"
+    }
+
+    override fun onRefresh() {
+
     }
 }

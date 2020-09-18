@@ -54,4 +54,7 @@ dependencies {
 
     //PAGINATION
     implementation "android.arch.paging:runtime:1.0.1"
+
+    //SWIPE TO REFRESH
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
