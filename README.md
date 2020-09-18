@@ -6,6 +6,7 @@ What the next?
 * add splash screen and the app icon
 * add tests
 * add a detail screen for a movie
+* show rating of film and other informations
 * coroutines
 * flow (after coroutines)
 * (maybe) kotlin multiplatform
