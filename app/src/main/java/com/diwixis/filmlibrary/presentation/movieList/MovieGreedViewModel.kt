@@ -3,6 +3,7 @@ package com.diwixis.filmlibrary.presentation.movieList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diwixis.filmlibrary.domain.PaginationListener
 import com.diwixis.filmlibrary.domain.repository.MoviesRepository
@@ -12,6 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import java.lang.Exception
 
 typealias MovieResponse = Response<List<Movie>>
 
@@ -43,7 +45,13 @@ internal class MovieGreedViewModel(private val repository: MoviesRepository) : V
         }
     }
 
-    fun loadTopRateMovies(page: Int = 1): LiveData<MovieResponse> {
+    fun loadTopRateMovies(page: Int = 1) = liveData<MovieResponse> {
+        emit(Response.load())
+        try {
+            repository.getTopRateMovies(page)
+        } catch (e: Exception) {
+
+        }
         repository.getTopRateMovies(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

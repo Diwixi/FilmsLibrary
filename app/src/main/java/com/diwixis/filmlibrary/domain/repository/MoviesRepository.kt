@@ -4,7 +4,7 @@ import com.diwixis.filmlibrary.presentation.Movie
 import io.reactivex.Single
 
 interface MoviesRepository {
-    fun getTopRateMovies(page: Int = 1): Single<List<Movie>>
-    fun getMovieById(movieId: Int): Single<Movie>
-    fun getPopularMovies(page: Int = 1): Single<List<Movie>>
+    suspend fun getTopRateMovies(page: Int = 1): List<Movie>
+    suspend fun getPopularMovies(page: Int = 1): List<Movie>
+    suspend fun getMovieById(movieId: Int): Movie
 }

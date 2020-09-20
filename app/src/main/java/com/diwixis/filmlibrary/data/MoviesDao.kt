@@ -9,25 +9,25 @@ import io.reactivex.Single
 interface MovieDao {
 
     @Query("SELECT * FROM $TABLE_MOVIE")
-    fun getAll(): Single<List<MovieBean>>
+    suspend fun getAll(): List<MovieBean>
 
     @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_TOP'")
-    fun getTop(): Single<List<MovieBean>>
+    suspend fun getTop(): List<MovieBean>
 
     @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_POP'")
-    fun getPop(): Single<List<MovieBean>>
+    suspend fun getPop(): List<MovieBean>
 
     @Query("SELECT * FROM $TABLE_MOVIE WHERE id = :id")
-    fun getById(id: Int): Single<MovieBean>
+    suspend fun getById(id: Int): MovieBean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(list: List<MovieBean>)
+    suspend fun insertAll(list: List<MovieBean>)
 
     @Query("DELETE FROM $TABLE_MOVIE")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Transaction
-    fun swap(list: List<MovieBean>) {
+    suspend fun swap(list: List<MovieBean>) {
         deleteAll()
         insertAll(list)
     }

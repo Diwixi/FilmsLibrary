@@ -9,8 +9,8 @@ import java.util.*
 
 interface TmdbApi {
     @GET(Urls.MOVIE_POPULAR)
-    fun getPopularMovies(@QueryMap params: HashMap<String, String>): Single<MoviesBean>
+    suspend fun getPopularMovies(@QueryMap params: HashMap<String, String>): MoviesBean
 
     @GET(Urls.MOVIE_TOP_RATE)
-    fun getTopRatedMovies(@QueryMap params: HashMap<String, String>): Single<MoviesBean>
+    suspend fun getTopRatedMovies(@QueryMap params: HashMap<String, String>): MoviesBean
 }

@@ -17,11 +17,6 @@ import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailDialogFragmen
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
 
-
-/**
- * 03.06.2020
- * @author П. Густокашин (Diwixis)
- */
 class MovieListFragment : Fragment(R.layout.fragment_movie_list),
     SwipeRefreshLayout.OnRefreshListener {
 
