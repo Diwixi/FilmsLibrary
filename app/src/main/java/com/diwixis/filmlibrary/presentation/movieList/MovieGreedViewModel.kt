@@ -1,9 +1,6 @@
 package com.diwixis.filmlibrary.presentation.movieList
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diwixis.filmlibrary.domain.PaginationListener
 import com.diwixis.filmlibrary.domain.repository.MoviesRepository
@@ -13,18 +10,28 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-typealias MovieResponse = Response<List<Movie>>
+typealias MovieListResponse = Response<List<Movie>>
 
 internal class MovieGreedViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val rxDisposables = CompositeDisposable()
 
-    private val _movies: MutableLiveData<MovieResponse> = MutableLiveData()
+    private val _movies: MutableLiveData<MovieListResponse> = MutableLiveData()
+    val errorLiveData: LiveData<MovieListResponse> = _movies
 
     private var currentPage: Int = PaginationListener.PAGE_START
     private var isAbleToLoadMore = false
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        _movies.value = Response.failure(exception)
+        isAbleToLoadMore = true
+    }
 
     fun getPaginationListener(
         manager: LinearLayoutManager,
@@ -45,46 +52,16 @@ internal class MovieGreedViewModel(private val repository: MoviesRepository) : V
         }
     }
 
-    fun loadTopRateMovies(page: Int = 1) = liveData<MovieResponse> {
+    fun loadTopRateMovies(page: Int = 1) = liveData(exceptionHandler + Dispatchers.Main) {
         emit(Response.load())
-        try {
-            repository.getTopRateMovies(page)
-        } catch (e: Exception) {
-
-        }
-        repository.getTopRateMovies(page)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _movies.value = Response.load() }
-            .subscribe(
-                { results ->
-                    _movies.value = Response.success(results)
-                    isAbleToLoadMore = true
-                },
-                {
-                    _movies.value = Response.failure(it)
-                    isAbleToLoadMore = true
-                }
-            ).addTo(rxDisposables)
-        return _movies
+        isAbleToLoadMore = true
+        emit(Response.success(repository.getTopRateMovies(page)))
     }
 
-    fun loadPopularMovies(page: Int = 1): LiveData<MovieResponse> {
-        repository.getPopularMovies(page)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _movies.value = Response.load() }
-            .subscribe(
-                { results ->
-                    _movies.value = Response.success(results)
-                    isAbleToLoadMore = true
-                },
-                {
-                    _movies.value = Response.failure(it)
-                    isAbleToLoadMore = true
-                }
-            ).addTo(rxDisposables)
-        return _movies
+    fun loadPopularMovies(page: Int = 1) = liveData(exceptionHandler + Dispatchers.Main) {
+        emit(Response.load())
+        isAbleToLoadMore = true
+        emit(Response.success(repository.getPopularMovies(page)))
     }
 
     override fun onCleared() {

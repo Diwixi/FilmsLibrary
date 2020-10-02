@@ -28,6 +28,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
         }
     }
 
+    private val errorObserver = Observer<Response<List<Movie>>> { response ->
+        response.toString()
+    }
+
     private val listMovieObserver = Observer<Response<List<Movie>>> { response ->
         when (response) {
             is Load -> progressBar.isVisible = true
@@ -62,6 +66,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
                 MoviesMode.TOP -> loadTopRateMovies().observe(viewLifecycleOwner, listMovieObserver)
                 MoviesMode.POP -> loadPopularMovies().observe(viewLifecycleOwner, listMovieObserver)
             }
+            errorLiveData.observe(viewLifecycleOwner, errorObserver)
         }
         super.onViewCreated(view, savedInstanceState)
     }
