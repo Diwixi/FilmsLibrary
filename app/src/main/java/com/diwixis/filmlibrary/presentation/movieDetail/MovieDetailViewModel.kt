@@ -3,34 +3,30 @@ package com.diwixis.filmlibrary.presentation.movieDetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 import com.diwixis.filmlibrary.domain.utils.Response
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.domain.repository.MoviesRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+typealias MovieResponse = Response<Movie>
 
 class MovieDetailViewModel(private val repository: MoviesRepository) : ViewModel() {
 
-    private val rxDisposables = CompositeDisposable()
+    private val _error: MutableLiveData<MovieResponse> = MutableLiveData()
+    val errorLiveData: LiveData<MovieResponse> = _error
 
-    private val _movie: MutableLiveData<Response<Movie>> = MutableLiveData()
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        _error.value = Response.failure(exception)
+    }
 
-    fun loadMovieById(movieId: Int): LiveData<Response<Movie>> {
-        repository.getMovieById(movieId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _movie.value = Response.load() }
-            .subscribe(
-                { results ->
-                    _movie.value = Response.success(results)
-                },
-                {
-                    //TODO add error
-                    _movie.value = Response.failure(it)
-                }
-            ).addTo(rxDisposables)
-        return _movie
+    fun loadMovieById(movieId: Int) = liveData(exceptionHandler + Dispatchers.IO) {
+        emit(Response.load())
+        val result = withContext(Dispatchers.IO) {
+            repository.getMovieById(movieId)
+        }
+        emit(Response.success(result))
     }
 }

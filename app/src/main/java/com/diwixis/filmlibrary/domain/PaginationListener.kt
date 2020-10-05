@@ -12,7 +12,10 @@ abstract class PaginationListener(
         val totalItemCount = layoutManager.itemCount
         val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
         if (isAbleToLoadMore) {
-            if (firstVisibleItemPosition >= totalItemCount - PAGE_SIZE && firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE) {
+            if (firstVisibleItemPosition >= totalItemCount - PAGE_SIZE &&
+                firstVisibleItemPosition >= 0 &&
+                totalItemCount >= PAGE_SIZE
+            ) {
                 loadMoreItems()
             }
         }

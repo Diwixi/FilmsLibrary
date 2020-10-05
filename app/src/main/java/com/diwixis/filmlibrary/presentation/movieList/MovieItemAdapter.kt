@@ -15,13 +15,7 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 internal class MovieItemAdapter :
     ListAdapter<Movie, MovieItemAdapter.ViewHolder>(MOVIE_COMPARATOR) {
-    //    private var movieList: MutableList<Movie> = mutableListOf()
     private var clickListener: IOnItemClick? = null
-
-//    fun setData(list: List<Movie>) {
-//        movieList.addAll(list)
-//        notifyDataSetChanged()
-//    }
 
     fun setClickListener(listener: IOnItemClick?) {
         clickListener = listener
@@ -37,10 +31,7 @@ internal class MovieItemAdapter :
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

@@ -17,11 +17,6 @@ import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailDialogFragmen
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
 
-
-/**
- * 03.06.2020
- * @author П. Густокашин (Diwixis)
- */
 class MovieListFragment : Fragment(R.layout.fragment_movie_list),
     SwipeRefreshLayout.OnRefreshListener {
 
@@ -31,6 +26,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
         override fun onItemClick(movie: Movie) {
             MovieDetailDialogFragment.open(childFragmentManager, movie)
         }
+    }
+
+    private val errorObserver = Observer<Response<List<Movie>>> { response ->
+        response.toString()
     }
 
     private val listMovieObserver = Observer<Response<List<Movie>>> { response ->
@@ -67,6 +66,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
                 MoviesMode.TOP -> loadTopRateMovies().observe(viewLifecycleOwner, listMovieObserver)
                 MoviesMode.POP -> loadPopularMovies().observe(viewLifecycleOwner, listMovieObserver)
             }
+            errorLiveData.observe(viewLifecycleOwner, errorObserver)
         }
         super.onViewCreated(view, savedInstanceState)
     }

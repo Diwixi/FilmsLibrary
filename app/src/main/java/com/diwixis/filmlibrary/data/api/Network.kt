@@ -3,7 +3,7 @@ package com.diwixis.filmlibrary.data.api
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.diwixis.filmlibrary.BuildConfig
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,24 +12,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Network {
 
+    private val logginInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
     private val responseBackLog = arrayListOf<Deferred<Unit>>()
+    private val networkCallback = object : ConnectivityManager.NetworkCallback() {
+        override fun onAvailable(network: Network) {
+            //take action when network connection is gained
+        }
 
-    fun Deferred<Unit>.doAfterIfImposable(context: Context) {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        connectivityManager.let {
-            it.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    //take action when network connection is gained
-                }
-
-                override fun onLost(network: Network) {
-                    //super.onLost(network)
-                }
-            })
+        override fun onLost(network: Network) {
+            //super.onLost(network)
         }
     }
+
+//    fun Deferred<Unit>.doAfterIfImposable(context: Context) {
+//        val connectivityManager =
+//            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//
+//        connectivityManager.registerDefaultNetworkCallback(networkCallback)
+//    }
 
     fun createNetworkClient(baseUrl: String): Retrofit = retrofitClient(
         baseUrl,
@@ -43,12 +45,11 @@ object Network {
         gson
     )
 
-    private fun httpClient() = OkHttpClient.Builder().addInterceptor(
-        HttpLoggingInterceptor().apply {
-            //TODO use only for DEBUG
-            level = HttpLoggingInterceptor.Level.BODY
+    private fun httpClient() = OkHttpClient.Builder().apply {
+        if (BuildConfig.DEBUG) {
+            addInterceptor(logginInterceptor)
         }
-    ).build()
+    }.build()
 
     private fun retrofitClient(
         baseUrl: String,
@@ -57,7 +58,6 @@ object Network {
     ) = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(httpClient)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(gson)
         .build()
 }

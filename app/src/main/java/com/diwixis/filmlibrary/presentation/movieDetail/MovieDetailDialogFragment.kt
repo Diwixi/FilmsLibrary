@@ -29,6 +29,9 @@ import org.koin.android.ext.android.inject
 class MovieDetailDialogFragment : BottomSheetDialogFragment() {
 
     private val viewModel by inject<MovieDetailViewModel>()
+
+    private val errorObserver = Observer<Response<Movie>> { response ->
+    }
     private val movieObserver = Observer<Response<Movie>> {
         when (it) {
             is Load -> progressBar.isVisible = true
@@ -69,6 +72,8 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
         arguments?.getInt(EXTRA_MOVIE_ID, 0)?.let { movieId ->
             viewModel.loadMovieById(movieId).observe(viewLifecycleOwner, movieObserver)
         }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner, errorObserver)
 
         showMoreButton.setOnClick { context?.toast("in progress..") }
     }
