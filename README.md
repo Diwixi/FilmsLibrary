@@ -7,11 +7,11 @@ What the next?
 * add tests
 * add a detail screen for a movie
 * show rating of film and other informations
-* coroutines
 * flow (after coroutines)
 * (maybe) kotlin multiplatform
 
 Done:
+* Replacement Rx on coroutines
 * a tab was added where I trained how to create custom views.
 * top and pop as pages
 * paginations for top and pop
