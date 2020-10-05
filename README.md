@@ -3,7 +3,6 @@ Film library is a pet-project app and that work with the Tmdb-api. Here I test s
 
 What the next?
 * add error processing
-* add splash screen and the app icon
 * add tests
 * add a detail screen for a movie
 * show rating of film and other informations
@@ -12,6 +11,7 @@ What the next?
 
 Done:
 * Replacement Rx on coroutines
+* add the app icon
 * a tab was added where I trained how to create custom views.
 * top and pop as pages
 * paginations for top and pop
