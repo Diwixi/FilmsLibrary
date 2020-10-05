@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import com.diwixis.filmlibrary.BuildConfig
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,12 +26,12 @@ object Network {
         }
     }
 
-    fun Deferred<Unit>.doAfterIfImposable(context: Context) {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        connectivityManager.registerDefaultNetworkCallback(networkCallback)
-    }
+//    fun Deferred<Unit>.doAfterIfImposable(context: Context) {
+//        val connectivityManager =
+//            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//
+//        connectivityManager.registerDefaultNetworkCallback(networkCallback)
+//    }
 
     fun createNetworkClient(baseUrl: String): Retrofit = retrofitClient(
         baseUrl,
@@ -59,7 +58,6 @@ object Network {
     ) = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(httpClient)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(gson)
         .build()
 }

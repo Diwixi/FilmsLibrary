@@ -4,12 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.diwixis.filmlibrary.custom_view.R
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.view_clock.view.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 internal class ClockView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -23,12 +19,6 @@ internal class ClockView @JvmOverloads constructor(
         showTime()
     }
 
-    private val numbersClock: Disposable = Observable.interval(1, TimeUnit.SECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-            showTime()
-        }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
@@ -39,11 +29,6 @@ internal class ClockView @JvmOverloads constructor(
         hours2.changeWidth(newWidth)
         minutes1.changeWidth(newWidth)
         minutes2.changeWidth(newWidth)
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        numbersClock.dispose()
     }
 
     private fun getTime(): List<Int> {
