@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.presentation.movieDetail
+package com.diwixis.filmlibrary.presentation.moviePreview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

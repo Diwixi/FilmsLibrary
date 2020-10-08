@@ -10,4 +10,5 @@
     <string name="show_more">show more</string>
     <string name="tab_movies">Movies</string>
     <string name="tab_about">About</string>
+    <string name="network_error_connection">Network error connection</string>
 </resources>

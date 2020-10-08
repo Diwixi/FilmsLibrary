@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.presentation.movieDetail
+package com.diwixis.filmlibrary.presentation.moviePreview
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -26,11 +26,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import org.koin.android.ext.android.inject
 
-class MovieDetailDialogFragment : BottomSheetDialogFragment() {
+class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
 
     private val viewModel by inject<MovieDetailViewModel>()
 
     private val errorObserver = Observer<Response<Movie>> { response ->
+        progressBar.isVisible = false
+        //TODO show error
     }
     private val movieObserver = Observer<Response<Movie>> {
         when (it) {
@@ -92,7 +94,7 @@ class MovieDetailDialogFragment : BottomSheetDialogFragment() {
         const val EXTRA_MOVIE_ID = "com.diwixis.filmlibrary.presentation.movieDetail.EXTRA_MOVIE_ID"
 
         fun open(fragmentManager: FragmentManager, movie: Movie) {
-            val mBottomSheetDialog = MovieDetailDialogFragment().apply {
+            val mBottomSheetDialog = MoviePreviewDialogFragment().apply {
                 arguments = bundleOf(EXTRA_MOVIE_ID to movie.id)
             }
             mBottomSheetDialog.show(fragmentManager, "MovieDetailDialogFragment")

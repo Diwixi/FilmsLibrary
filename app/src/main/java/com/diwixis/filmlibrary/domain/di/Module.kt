@@ -4,7 +4,7 @@ import com.diwixis.filmlibrary.BuildConfig.API_BASE_URL
 import com.diwixis.filmlibrary.data.api.Network.createNetworkClient
 import com.diwixis.filmlibrary.data.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
-import com.diwixis.filmlibrary.presentation.movieDetail.MovieDetailViewModel
+import com.diwixis.filmlibrary.presentation.moviePreview.MovieDetailViewModel
 import com.diwixis.filmlibrary.presentation.movieList.MovieGreedViewModel
 import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 import com.diwixis.filmlibrary.data.MoviesRepositoryImpl

@@ -1,10 +1,10 @@
 package com.diwixis.filmlibrary.data.api
 
-import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.diwixis.filmlibrary.BuildConfig
-import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,23 +15,19 @@ object Network {
     private val logginInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
-    private val responseBackLog = arrayListOf<Deferred<Unit>>()
-    private val networkCallback = object : ConnectivityManager.NetworkCallback() {
+
+    val networkCallback = object : ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
-            //take action when network connection is gained
+            networkConnection.postValue(Connection.AVAILABLE)
         }
 
         override fun onLost(network: Network) {
-            //super.onLost(network)
+            networkConnection.postValue(Connection.LOST)
         }
     }
 
-//    fun Deferred<Unit>.doAfterIfImposable(context: Context) {
-//        val connectivityManager =
-//            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//
-//        connectivityManager.registerDefaultNetworkCallback(networkCallback)
-//    }
+    private val networkConnection: MutableLiveData<Connection> = MutableLiveData()
+    val networkConnectionLiveData: LiveData<Connection> = networkConnection
 
     fun createNetworkClient(baseUrl: String): Retrofit = retrofitClient(
         baseUrl,
@@ -60,4 +56,9 @@ object Network {
         .client(httpClient)
         .addConverterFactory(gson)
         .build()
+
+    enum class Connection {
+        AVAILABLE,
+        LOST
+    }
 }
