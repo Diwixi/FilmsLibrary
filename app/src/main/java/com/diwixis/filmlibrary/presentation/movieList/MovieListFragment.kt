@@ -15,10 +15,11 @@ import com.diwixis.filmlibrary.presentation.Movie
 import com.diwixis.filmlibrary.presentation.moviePreview.MoviePreviewDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
-    private val viewModel by inject<MovieGreedViewModel>()
+    private val viewModel by viewModel<MovieGreedViewModel>()
 
     private val clickListener = object : MovieItemAdapter.IOnItemClick {
         override fun onItemClick(movie: Movie) {

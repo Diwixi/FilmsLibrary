@@ -1,5 +1,8 @@
 package com.diwixis.filmlibrary.presentation
 
+import android.content.Intent
+import android.nfc.NdefMessage
+import android.nfc.NfcAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -36,5 +39,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navView.setupWithNavController(navController)
 
         Network.networkConnectionLiveData.observe(this, networkConnectionError)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action) {
+            intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)?.also { rawMessages ->
+                val messages = rawMessages.map { it as NdefMessage }
+                messages.toString()
+                // Обработка массива сообщений.
+            }
+        }
     }
 }

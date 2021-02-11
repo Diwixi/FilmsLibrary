@@ -8,6 +8,7 @@ import com.diwixis.filmlibrary.presentation.moviePreview.MovieDetailViewModel
 import com.diwixis.filmlibrary.presentation.movieList.MovieGreedViewModel
 import com.diwixis.filmlibrary.domain.repository.MoviesRepository
 import com.diwixis.filmlibrary.data.MoviesRepositoryImpl
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
@@ -26,8 +27,8 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    factory { MovieGreedViewModel(get()) }
-    factory { MovieDetailViewModel(get()) }
+    viewModel { MovieGreedViewModel(get()) }
+    viewModel { MovieDetailViewModel(get()) }
 }
 
 private val movieRetrofit: Retrofit

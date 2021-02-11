@@ -3,6 +3,7 @@ package com.diwixis.filmlibrary.presentation.movieList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,8 @@ internal class MovieItemAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.parentItem.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycler_anim)
     }
 
     interface IOnItemClick {

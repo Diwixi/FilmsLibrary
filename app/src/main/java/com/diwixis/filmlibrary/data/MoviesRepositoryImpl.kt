@@ -11,16 +11,14 @@ class MoviesRepositoryImpl(
 ) : MoviesRepository {
 
     override suspend fun getTopRateMovies(page: Int) = api
-        .getTopRatedMovies(Params.getParams(page)).movies.apply {
-            forEach { item -> item.mode = MODE_TOP }
-        }
+        .getTopRatedMovies(Params.getParams(page)).movies
+        .onEach { item -> item.mode = MODE_TOP }
         .also { db.movieDao().insertAll(it) }
         .map { it.map() }
 
     override suspend fun getPopularMovies(page: Int) = api
-        .getPopularMovies(Params.getParams(page)).movies.apply {
-            forEach { item -> item.mode = MODE_POP }
-        }
+        .getPopularMovies(Params.getParams(page)).movies
+        .onEach { item -> item.mode = MODE_POP }
         .also { db.movieDao().insertAll(it) }
         .map { it.map() }
 

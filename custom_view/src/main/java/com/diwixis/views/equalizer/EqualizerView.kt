@@ -71,7 +71,9 @@ internal class EqualizerView @JvmOverloads constructor(
     }
 
     fun updateBarsRelatively(data: List<Float>) {
-        if (data.size != bars.size) throw IllegalStateException()
+        require(data.size != bars.size) {
+            "wrong bars data size in equalizer"
+        }
 
         bars.forEachIndexed { index, barItem ->
             barItem.updateValueRelatively(data[index])

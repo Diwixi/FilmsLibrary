@@ -25,10 +25,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
 
-    private val viewModel by inject<MovieDetailViewModel>()
+    private val viewModel by viewModel<MovieDetailViewModel>()
 
     private val errorObserver = Observer<Response<Movie>> { response ->
         progressBar.isVisible = false
