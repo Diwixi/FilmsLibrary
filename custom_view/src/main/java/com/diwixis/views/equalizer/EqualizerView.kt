@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import java.lang.IllegalStateException
 
 internal class EqualizerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -71,7 +70,7 @@ internal class EqualizerView @JvmOverloads constructor(
     }
 
     fun updateBarsRelatively(data: List<Float>) {
-        require(data.size != bars.size) {
+        require(data.size == bars.size) {
             "wrong bars data size in equalizer"
         }
 

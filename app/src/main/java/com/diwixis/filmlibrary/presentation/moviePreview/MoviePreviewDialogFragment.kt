@@ -13,18 +13,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import coil.load
 import com.diwixis.filmlibrary.R
-import com.diwixis.filmlibrary.domain.utils.Failure
-import com.diwixis.filmlibrary.domain.utils.Load
-import com.diwixis.filmlibrary.domain.utils.Response
-import com.diwixis.filmlibrary.domain.utils.Success
+import com.diwixis.filmlibrary.domain.utils.*
 import com.diwixis.filmlibrary.presentation.Movie
-import com.diwixis.filmlibrary.domain.utils.setOnClick
-import com.diwixis.filmlibrary.domain.utils.toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
-import org.koin.android.ext.android.inject
+import kotlinx.android.synthetic.main.fragment_movie_preview.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
@@ -67,7 +61,7 @@ class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_movie_detail, container, false)
+    ): View = inflater.inflate(R.layout.fragment_movie_preview, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
