@@ -3,8 +3,7 @@ package com.diwixis.feature_movie_list.domain
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
-abstract class PaginationListener(
+internal abstract class PaginationListener(
     private val layoutManager: LinearLayoutManager
 ) : RecyclerView.OnScrollListener() {
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

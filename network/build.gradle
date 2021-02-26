@@ -7,6 +7,7 @@ apply from: '../base.gradle'
 android {
     defaultConfig {
         consumerProguardFiles "consumer-rules.pro"
+        buildConfigField "String", "API_KEY", '"0516658c86a06036a56245c87217383f"'
     }
 }
 

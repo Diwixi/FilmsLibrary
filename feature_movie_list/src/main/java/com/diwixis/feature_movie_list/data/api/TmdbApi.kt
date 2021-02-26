@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.QueryMap
 import java.util.*
 
-interface TmdbApi {
+internal interface TmdbApi {
     @GET(Urls.MOVIE_POPULAR)
     suspend fun getPopularMovies(@QueryMap params: HashMap<String, String>): MoviesBean
 

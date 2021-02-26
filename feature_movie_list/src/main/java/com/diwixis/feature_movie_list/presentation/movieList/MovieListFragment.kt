@@ -17,7 +17,7 @@ import com.diwixis.feature_movie_list.presentation.Movie
 import com.diwixis.feature_movie_list.presentation.moviePreview.MoviePreviewDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieListFragment : Fragment() {
+internal class MovieListFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieListBinding
     private val viewModel by viewModel<MovieGreedViewModel>()

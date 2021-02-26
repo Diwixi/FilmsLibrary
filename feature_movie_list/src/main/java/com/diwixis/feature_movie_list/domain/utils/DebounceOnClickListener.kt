@@ -2,7 +2,7 @@ package com.diwixis.feature_movie_list.domain.utils
 
 import android.view.View
 
-class DebounceOnClickListener(
+internal class DebounceOnClickListener(
     private val intervalMillis: Long,
     private val doClick: ((View) -> Unit)
 ) : View.OnClickListener {

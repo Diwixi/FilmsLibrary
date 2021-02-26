@@ -1,15 +1,14 @@
 package com.diwixis.feature_movie_list.domain.utils
 
-import com.diwixis.feature_movie_list.BuildConfig
-import kotlin.collections.HashMap
+import com.diwixis.network.BuildConfig.API_KEY
 
 typealias Param = HashMap<String, String>
 
-object Params {
+internal object Params {
     private val movieParams: Param
         get() {
             val hashMap = Param()
-            hashMap[API_KEY] = BuildConfig.API_KEY
+            hashMap[API_KEY_TITLE] = API_KEY
             hashMap[LANG] = "en"
             hashMap[PAGE] = "1"
             return hashMap
@@ -23,7 +22,7 @@ object Params {
         }
     }
 
-    private const val API_KEY = "api_key"
+    private const val API_KEY_TITLE = "api_key"
     private const val LANG = "language"
     private const val PAGE = "page"
 }

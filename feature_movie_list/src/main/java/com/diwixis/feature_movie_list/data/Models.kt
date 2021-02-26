@@ -3,14 +3,14 @@ package com.diwixis.feature_movie_list.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.diwixis.feature_movie_list.BuildConfig
 import com.diwixis.feature_movie_list.data.MovieBean.Companion.TABLE_MOVIE
 import com.diwixis.feature_movie_list.presentation.Movie
+import com.diwixis.network.Constants.Companion.API_IMAGE_BASE_URL
 import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = TABLE_MOVIE)
-data class MovieBean(
+internal data class MovieBean(
     @PrimaryKey @ColumnInfo(name = COLUMN_NAME_ID)
     @SerializedName(COLUMN_NAME_ID)
     val id: Int,
@@ -49,11 +49,11 @@ data class MovieBean(
     }
 }
 
-fun List<MovieBean>.map() = this.map { it.map() }
-fun MovieBean.map() = Movie(
+internal fun List<MovieBean>.map() = this.map { it.map() }
+internal fun MovieBean.map() = Movie(
     id = id,
     title = title,
-    posterPath = "${BuildConfig.API_IMAGE_BASE_URL}${posterPath}",
+    posterPath = "${API_IMAGE_BASE_URL}${posterPath}",
     overview = overview,
     releaseDate = releaseDate,
     originalTitle = originalTitle,

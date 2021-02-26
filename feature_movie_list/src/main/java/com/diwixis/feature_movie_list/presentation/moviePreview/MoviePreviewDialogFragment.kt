@@ -21,7 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
+internal class MoviePreviewDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentMoviePreviewBinding
     private val viewModel by viewModel<MovieDetailViewModel>()

@@ -1,3 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.diwixis.filmlibrary.custom_view">
-</manifest>
+<manifest package="com.diwixis.filmlibrary.custom_view"/>

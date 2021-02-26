@@ -2,12 +2,12 @@ package com.diwixis.feature_movie_list.presentation
 
 import java.io.Serializable
 
-data class Movies(
+internal data class Movies(
     val page: Int,
     val movies: List<Movie> = emptyList()
 ) : Serializable
 
-data class Movie(
+internal data class Movie(
     var id: Int,
     val title: String? = null,
     val posterPath: String? = null,

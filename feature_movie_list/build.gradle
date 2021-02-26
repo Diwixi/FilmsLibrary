@@ -10,10 +10,6 @@ apply from: '../di.gradle'
 android {
     defaultConfig {
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField "String", "API_BASE_URL", '"https://api.themoviedb.org/"'
-        buildConfigField "String", "API_KEY", '"0516658c86a06036a56245c87217383f"'
-        buildConfigField "String", "API_IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500"'
     }
 }
 

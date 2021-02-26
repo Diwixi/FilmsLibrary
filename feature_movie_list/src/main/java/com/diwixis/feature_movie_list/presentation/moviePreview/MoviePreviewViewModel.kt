@@ -11,9 +11,9 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-typealias MovieResponse = Response<Movie>
+internal typealias MovieResponse = Response<Movie>
 
-class MovieDetailViewModel(private val repository: MoviesRepository) : ViewModel() {
+internal class MovieDetailViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     private val _error: MutableLiveData<MovieResponse> = MutableLiveData()
     val errorLiveData: LiveData<MovieResponse> = _error

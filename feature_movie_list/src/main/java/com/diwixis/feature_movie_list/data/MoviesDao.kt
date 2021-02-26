@@ -5,7 +5,7 @@ import com.diwixis.feature_movie_list.data.MovieBean.Companion.COLUMN_NAME_MODE
 import com.diwixis.feature_movie_list.data.MovieBean.Companion.TABLE_MOVIE
 
 @Dao
-interface MovieDao {
+internal interface MovieDao {
 
     @Query("SELECT * FROM $TABLE_MOVIE")
     suspend fun getAll(): List<MovieBean>

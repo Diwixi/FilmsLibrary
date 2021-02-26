@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
     version = 1,
     exportSchema = true
 )
-abstract class Database : RoomDatabase() {
+internal abstract class Database : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 
     companion object {

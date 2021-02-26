@@ -10,7 +10,7 @@ import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.databinding.ActivityMainBinding
 import com.diwixis.network.Network
 
-class MainActivity : AppCompatActivity() {
+internal class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

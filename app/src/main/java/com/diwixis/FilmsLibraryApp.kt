@@ -9,7 +9,7 @@ import com.diwixis.network.Network
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class FilmsLibraryApp : Application() {
+internal class FilmsLibraryApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {

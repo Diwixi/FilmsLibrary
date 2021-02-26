@@ -4,7 +4,7 @@ import com.diwixis.feature_movie_list.domain.utils.Params
 import com.diwixis.feature_movie_list.data.api.TmdbApi
 import com.diwixis.feature_movie_list.domain.repository.MoviesRepository
 
-class MoviesRepositoryImpl(
+internal class MoviesRepositoryImpl(
     private val db: Database,
     private val api: TmdbApi
 ) : MoviesRepository {
