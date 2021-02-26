@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+apply from: '../base.gradle'
+apply from: '../di.gradle'
+
+android {
+    defaultConfig {
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "API_BASE_URL", '"https://api.themoviedb.org/"'
+        buildConfigField "String", "API_KEY", '"0516658c86a06036a56245c87217383f"'
+        buildConfigField "String", "API_IMAGE_BASE_URL", '"https://image.tmdb.org/t/p/w500"'
+    }
+}
+
+dependencies {
+    implementation project(':network')
+    implementation project(':navigation')
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.3.0'
+
+    //IMAGE
+    implementation "io.coil-kt:coil:0.12.0"
+
+    //JSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //DB
+    implementation "androidx.room:room-runtime:2.2.6"
+    kapt "androidx.room:room-compiler:2.2.6"
+    implementation "androidx.room:room-ktx:2.2.6"
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
+    //LIFECYCLE
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
+
+    //PAGINATION
+    implementation "android.arch.paging:runtime:1.0.1"
+
+    //SWIPE TO REFRESH
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+}

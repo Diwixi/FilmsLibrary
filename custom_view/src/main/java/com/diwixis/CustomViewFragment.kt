@@ -1,26 +1,37 @@
 package com.diwixis
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.diwixis.filmlibrary.custom_view.R
-import kotlinx.android.synthetic.main.fragment_custom_view.*
+import com.diwixis.filmlibrary.custom_view.databinding.FragmentCustomViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class CustomViewFragment : Fragment(R.layout.fragment_custom_view) {
+class CustomViewFragment : Fragment() {
 
+    private lateinit var binding: FragmentCustomViewBinding
     private lateinit var equalizerTicker: Job
     private lateinit var numberViewTicker: Job
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentCustomViewBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        customView.init(BARS_COUNT)
+        binding.customView.init(BARS_COUNT)
     }
 
     override fun onStart() {
@@ -38,7 +49,7 @@ class CustomViewFragment : Fragment(R.layout.fragment_custom_view) {
 
     private fun startEqualizerTicker() {
         equalizerTicker = lifecycleScope.doTick(700) {
-            customView.updateBarsRelatively(makeFakeEqualizerData())
+            binding.customView.updateBarsRelatively(makeFakeEqualizerData())
         }
     }
 
@@ -48,7 +59,7 @@ class CustomViewFragment : Fragment(R.layout.fragment_custom_view) {
 
     private fun startNumberViewTicker() {
         numberViewTicker = lifecycleScope.doTick(1200) {
-            numberView.update((0..9).random())
+            binding.numberView.update((0..9).random())
         }
     }
 

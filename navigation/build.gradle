@@ -1,0 +1,19 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+apply from: '../base.gradle'
+
+android {
+    defaultConfig {
+        consumerProguardFiles "consumer-rules.pro"
+    }
+}
+
+dependencies {
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.3'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.3'
+
+    //????
+    api "androidx.navigation:navigation-dynamic-features-fragment:2.3.3"
+}

@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/custom_view/FilmsLibrary.custom_view.iml" filepath="$PROJECT_DIR$/.idea/modules/custom_view/FilmsLibrary.custom_view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature_movie_detail/FilmsLibrary.feature_movie_detail.iml" filepath="$PROJECT_DIR$/.idea/modules/feature_movie_detail/FilmsLibrary.feature_movie_detail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature_movie_list/FilmsLibrary.feature_movie_list.iml" filepath="$PROJECT_DIR$/.idea/modules/feature_movie_list/FilmsLibrary.feature_movie_list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/navigation/FilmsLibrary.navigation.iml" filepath="$PROJECT_DIR$/.idea/modules/navigation/FilmsLibrary.navigation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/FilmsLibrary.network.iml" filepath="$PROJECT_DIR$/.idea/modules/network/FilmsLibrary.network.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects.FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects.FilmsLibrary.iml" />
     </modules>
   </component>

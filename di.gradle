@@ -1,0 +1,4 @@
+dependencies {
+    implementation "org.koin:koin-android:2.1.0-alpha-1"
+    implementation "org.koin:koin-androidx-viewmodel:2.1.0-alpha-1"
+}

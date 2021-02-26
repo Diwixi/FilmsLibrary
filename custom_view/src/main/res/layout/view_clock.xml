@@ -8,7 +8,8 @@
     <com.diwixis.views.number.NumberView
         android:id="@+id/hours1"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/colorPrimaryDark" />
@@ -16,23 +17,27 @@
     <com.diwixis.views.number.NumberView
         android:id="@+id/hours2"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/hours1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:background="@color/colorPrimary" />
 
     <com.diwixis.views.blink_dots.BlinkDotsView
         android:id="@+id/dots"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/minutes1"
         app:layout_constraintStart_toEndOf="@id/hours2" />
 
     <com.diwixis.views.number.NumberView
         android:id="@+id/minutes1"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toStartOf="@+id/minutes2"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +46,8 @@
     <com.diwixis.views.number.NumberView
         android:id="@+id/minutes2"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/colorAccent" />

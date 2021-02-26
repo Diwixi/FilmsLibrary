@@ -1,2 +1,6 @@
+include ':network'
+include ':navigation'
+include ':feature_movie_list'
+include ':feature_movie_detail'
 include ':custom_view'
 include ':app'

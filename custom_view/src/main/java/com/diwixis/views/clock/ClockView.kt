@@ -4,31 +4,34 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.diwixis.filmlibrary.custom_view.R
-import kotlinx.android.synthetic.main.view_clock.view.*
+import com.diwixis.filmlibrary.custom_view.databinding.ViewClockBinding
 import java.util.*
 
 internal class ClockView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    private var binding: ViewClockBinding =
+        ViewClockBinding.bind(inflate(context, R.layout.view_clock, this))
+
     private val calendar: Calendar
         get() = Calendar.getInstance()
 
     init {
-        inflate(context, R.layout.view_clock, this)
         showTime()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
 
         val newWidth = widthSize / 5
-        hours1.changeWidth(newWidth)
-        hours2.changeWidth(newWidth)
-        minutes1.changeWidth(newWidth)
-        minutes2.changeWidth(newWidth)
+        with(binding) {
+            hours1.changeWidth(newWidth)
+            hours2.changeWidth(newWidth)
+            minutes1.changeWidth(newWidth)
+            minutes2.changeWidth(newWidth)
+        }
     }
 
     private fun getTime(): List<Int> {
@@ -53,9 +56,11 @@ internal class ClockView @JvmOverloads constructor(
     }
 
     private fun update(num1: Int, num2: Int, num3: Int, num4: Int) {
-        hours1.update(num1)
-        hours2.update(num2)
-        minutes1.update(num3)
-        minutes2.update(num4)
+        with(binding) {
+            hours1.update(num1)
+            hours2.update(num2)
+            minutes1.update(num3)
+            minutes2.update(num4)
+        }
     }
 }

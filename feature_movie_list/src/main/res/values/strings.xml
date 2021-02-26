@@ -1,0 +1,6 @@
+<resources>
+    <string name="show_more">show more</string>
+    <string name="overview">Overview:</string>
+    <string name="popularity_text">Populary:</string>
+    <string name="day_out">Release date:</string>
+</resources>
