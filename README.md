@@ -2,6 +2,8 @@
 Film library is a pet-project app and that work with the Tmdb-api. Here I test some interesting things for me and try to do as like me ^_^
 
 What the next?
+* more modules
+* jetpack compose
 * add tests
 * add a detail screen for a movie
 * show rating of film and other informations
