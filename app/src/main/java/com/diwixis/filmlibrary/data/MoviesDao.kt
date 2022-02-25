@@ -1,7 +1,6 @@
 package com.diwixis.filmlibrary.data
 
 import androidx.room.*
-import com.diwixis.filmlibrary.data.MovieBean.Companion.COLUMN_NAME_MODE
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
 
 @Dao
@@ -10,11 +9,11 @@ interface MovieDao {
     @Query("SELECT * FROM $TABLE_MOVIE")
     suspend fun getAll(): List<MovieBean>
 
-    @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_TOP'")
-    suspend fun getTop(): List<MovieBean>
-
-    @Query("SELECT * FROM $TABLE_MOVIE WHERE $COLUMN_NAME_MODE = 'MODE_POP'")
-    suspend fun getPop(): List<MovieBean>
+//    @Query("SELECT * FROM $TABLE_MOVIE)
+//    suspend fun getTop(): List<MovieBean>
+//
+//    @Query("SELECT * FROM $TABLE_MOVIE)
+//    suspend fun getPop(): List<MovieBean>
 
     @Query("SELECT * FROM $TABLE_MOVIE WHERE id = :id")
     suspend fun getById(id: Int): MovieBean

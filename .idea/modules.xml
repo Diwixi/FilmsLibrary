@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/FilmsLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/custom_view/FilmsLibrary.custom_view.iml" filepath="$PROJECT_DIR$/.idea/modules/custom_view/FilmsLibrary.custom_view.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects.FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects.FilmsLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies/FilmsLibrary.movies.iml" filepath="$PROJECT_DIR$/.idea/modules/movies/FilmsLibrary.movies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/FilmsLibrary.network.iml" filepath="$PROJECT_DIR$/.idea/modules/network/FilmsLibrary.network.iml" />
     </modules>
   </component>
 </project>

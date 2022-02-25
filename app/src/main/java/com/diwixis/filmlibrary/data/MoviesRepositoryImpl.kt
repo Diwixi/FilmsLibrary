@@ -1,32 +1,31 @@
 package com.diwixis.filmlibrary.data
 
-import com.diwixis.filmlibrary.domain.utils.Params
-import com.diwixis.filmlibrary.data.api.TmdbApi
-import com.diwixis.filmlibrary.domain.map
-import com.diwixis.filmlibrary.domain.repository.MoviesRepository
+import com.diwixis.filmlibrary.api.Params
+import com.diwixis.filmlibrary.api.TmdbApi
+import com.diwixis.filmlibrary.domain.Movie
+import com.diwixis.filmlibrary.domain.MoviesRepository
 
 class MoviesRepositoryImpl(
-    private val db: Database,
+//    private val db: Database,
     private val api: TmdbApi
 ) : MoviesRepository {
 
-    override suspend fun getTopRateMovies(page: Int) = api
+    //TODO переделать
+    override suspend fun getTopRateMovies(page: Int): List<Movie> = api
         .getTopRatedMovies(Params.getParams(page)).movies
-        .onEach { item -> item.mode = MODE_TOP }
-        .also { db.movieDao().insertAll(it) }
+//        .also { db.movieDao().insertAll(it) }
         .map { it.map() }
 
+    //TODO переделать
     override suspend fun getPopularMovies(page: Int) = api
         .getPopularMovies(Params.getParams(page)).movies
-        .onEach { item -> item.mode = MODE_POP }
-        .also { db.movieDao().insertAll(it) }
+//        .also { db.movieDao().insertAll(it) }
         .map { it.map() }
 
-    override suspend fun getMovieById(movieId: Int) =
-        db.movieDao().getById(movieId).map()
+    override suspend fun getNowPlaying(page: Int) = api
+        .getNowPlayingMovies(Params.getParams(page)).movies
+        .map { it.map() }
 
-    companion object {
-        const val MODE_TOP = "MODE_TOP"
-        const val MODE_POP = "MODE_POP"
-    }
+//    override suspend fun getMovieById(movieId: Int) =
+//        db.movieDao().getById(movieId).map()
 }

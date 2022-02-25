@@ -3,38 +3,44 @@ package com.diwixis.filmlibrary.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.diwixis.filmlibrary.BuildConfig
 import com.diwixis.filmlibrary.data.MovieBean.Companion.TABLE_MOVIE
-import com.diwixis.filmlibrary.presentation.Movie
-import com.google.gson.annotations.SerializedName
+import com.diwixis.filmlibrary.domain.Movie
+import com.diwixis.filmlibrary.domain.Movies
+import com.pg.network.BuildConfig
+import kotlinx.serialization.SerialName
 
+@Serializable
+data class MoviesBean(
+    @ColumnInfo(name = "page")
+    @SerialName("page")
+    val page: Int,
+    @ColumnInfo(name = "results")
+    @SerialName("results")
+    val movies: List<MovieBean> = emptyList()
+)
 
+fun MoviesBean.map() = Movies(page = page, movies = movies.map() { it.map() })
+
+@Serializable
 @Entity(tableName = TABLE_MOVIE)
 data class MovieBean(
     @PrimaryKey @ColumnInfo(name = COLUMN_NAME_ID)
-    @SerializedName(COLUMN_NAME_ID)
     val id: Int,
     @ColumnInfo(name = COLUMN_NAME_TITLE)
-    @SerializedName(COLUMN_NAME_TITLE)
     val title: String? = null,
+    @SerialName(COLUMN_NAME_POSTER_PATH)
     @ColumnInfo(name = COLUMN_NAME_POSTER_PATH)
-    @SerializedName(COLUMN_NAME_POSTER_PATH)
     val posterPath: String? = null,
     @ColumnInfo(name = COLUMN_NAME_OVERVIEW)
-    @SerializedName(COLUMN_NAME_OVERVIEW)
     val overview: String? = null,
+    @SerialName(COLUMN_NAME_RELEASE_DATE)
     @ColumnInfo(name = COLUMN_NAME_RELEASE_DATE)
-    @SerializedName(COLUMN_NAME_RELEASE_DATE)
     val releaseDate: String? = null,
+    @SerialName(COLUMN_NAME_ORDINAL_TITLE)
     @ColumnInfo(name = COLUMN_NAME_ORDINAL_TITLE)
-    @SerializedName(COLUMN_NAME_ORDINAL_TITLE)
     val originalTitle: String? = null,
     @ColumnInfo(name = COLUMN_NAME_POPULARITY)
-    @SerializedName(COLUMN_NAME_POPULARITY)
-    val popularity: Double? = null,
-    @ColumnInfo(name = COLUMN_NAME_MODE)
-    @SerializedName(COLUMN_NAME_MODE)
-    var mode: String? = null // I can't thing anything better. This for separate TOP and POPULAR
+    val popularity: Double? = null
 ) {
     companion object {
         const val TABLE_MOVIE = "movie"
@@ -45,7 +51,6 @@ data class MovieBean(
         const val COLUMN_NAME_RELEASE_DATE = "release_date"
         const val COLUMN_NAME_ORDINAL_TITLE = "original_title"
         const val COLUMN_NAME_POPULARITY = "popularity"
-        const val COLUMN_NAME_MODE = "mode"
     }
 }
 

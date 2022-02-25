@@ -15,8 +15,8 @@ abstract class Database : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 
     companion object {
-        fun create(context: Context) = Room
-            .databaseBuilder(context, Database::class.java, "FilmsLibrary.db")
+        fun create(context: Context): Database = Room
+            .databaseBuilder(context, Database::class.java, "FilmLibrary.db")
             .fallbackToDestructiveMigration()
             .build()
     }

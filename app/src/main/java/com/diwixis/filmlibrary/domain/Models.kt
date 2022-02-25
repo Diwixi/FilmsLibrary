@@ -1,16 +1,16 @@
 package com.diwixis.filmlibrary.domain
 
-import androidx.room.ColumnInfo
-import com.diwixis.filmlibrary.data.MovieBean
-import com.diwixis.filmlibrary.data.map
-import com.diwixis.filmlibrary.presentation.Movies
-import com.google.gson.annotations.SerializedName
-
-data class MoviesBean(
-    @ColumnInfo(name = "page")
-    @SerializedName("page") val page: Int,
-    @ColumnInfo(name = "results")
-    @SerializedName("results") val movies: List<MovieBean> = emptyList()
+data class Movies(
+    val page: Int,
+    val movies: List<Movie> = emptyList()
 )
 
-fun MoviesBean.map() = Movies(page = page, movies = movies.map() { it.map() })
+data class Movie(
+    var id: Int,
+    val title: String? = null,
+    val posterPath: String? = null,
+    val overview: String? = null,
+    val releaseDate: String? = null,
+    val originalTitle: String? = null,
+    val popularity: Double? = null
+)
