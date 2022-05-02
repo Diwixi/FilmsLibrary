@@ -1,6 +1,7 @@
 package com.diwixis.filmlibrary.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -24,7 +25,12 @@ import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.presentation.state.MovieListState
 
 @Composable
-fun MoviesBigRow(state: MovieListState, onShowAll: () -> Unit, title: String = "") {
+fun MoviesBigRow(
+    state: MovieListState,
+    onItemClick: (Int) -> Unit,
+    onShowAllClick: () -> Unit,
+    title: String = ""
+) {
     Column {
         if (title.isNotEmpty()) {
             Box {
@@ -46,10 +52,10 @@ fun MoviesBigRow(state: MovieListState, onShowAll: () -> Unit, title: String = "
             else -> {
                 LazyRow(verticalAlignment = Alignment.CenterVertically) {
                     items(state.movies) {
-                        MovieBigItem(it)
+                        MovieBigItem(it, onItemClick)
                     }
                     item {
-                        ShowMoreItem(onClick = onShowAll)
+                        ShowMoreItem(onClick = onShowAllClick)
                     }
                 }
             }
@@ -58,12 +64,13 @@ fun MoviesBigRow(state: MovieListState, onShowAll: () -> Unit, title: String = "
 }
 
 @Composable
-private fun MovieBigItem(movie: Movie) {
+private fun MovieBigItem(movie: Movie, onClick: (Int) -> Unit) {
     Box(
         modifier = Modifier
             .width(300.dp)
             .height(180.dp)
-            .padding(start = 16.dp),
+            .padding(start = 16.dp)
+            .clickable { onClick(movie.id) },
         contentAlignment = Alignment.BottomCenter
     ) {
         movie.posterPath?.also {
@@ -85,7 +92,11 @@ private fun MovieBigItem(movie: Movie) {
         (movie.title ?: movie.originalTitle)?.also {
             Text(
                 it,
-                style = TextStyle(fontSize = 20.sp, color = Color.White, fontWeight = FontWeight.Bold),
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

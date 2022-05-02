@@ -4,13 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.diwixis.filmlibrary.domain.di.moviesList
+import com.diwixis.filmlibrary.navigation.AuthorizedGraph
+import com.diwixis.filmlibrary.presentation.components.NetworkErrorWrapper
 import com.diwixis.filmlibrary.ui.theme.FilmLybraryTheme
 import kotlinx.coroutines.launch
 import org.kodein.di.DI
@@ -23,10 +27,12 @@ class MainActivity : ComponentActivity(), DIAware {
         setContent {
             FilmLybraryTheme {
                 Surface(color = MaterialTheme.colors.background) {
-//                    NetworkErrorWrapper {
-//                        AuthorizedGraph()
+                    NetworkErrorWrapper {
+                        AuthorizedGraph()
+                    }
+//                    Box(modifier = Modifier.fillMaxSize()) {
+//                        TestBS()
 //                    }
-                    TestBS()
                 }
             }
         }
@@ -43,10 +49,11 @@ fun TestBS() {
     Box(contentAlignment = Alignment.Center) {
         Button(onClick = {
             scope.launch {
-                sheetState.show()
+                if (sheetState.isVisible) sheetState.hide()
+                else sheetState.show()
             }
         }) {
-            Text(text = "Show BS")
+            Text(text = if (sheetState.isVisible) "Hide BS" else "Show BS")
         }
     }
     SheetModal(sheetState, onDismiss = {
@@ -79,6 +86,7 @@ fun SheetModal(
         }
     }
 }
+
 //----------------------TEST 2
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

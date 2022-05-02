@@ -2,6 +2,7 @@ package com.diwixis.filmlibrary.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -20,6 +21,7 @@ fun ShowMoreItem(onClick: () -> Unit) {
         modifier = Modifier
             .size(100.dp)
             .clip(CircleShape)
+            .clickable { onClick() }
             .background(Color.LightGray),
         contentAlignment = Alignment.Center
     ) {

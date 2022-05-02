@@ -17,13 +17,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.domain.MoviesRepository
+import com.diwixis.filmlibrary.navigation.GreedType
 import com.diwixis.filmlibrary.presentation.components.MoviesBigRow
 import com.diwixis.filmlibrary.presentation.state.stateShortProducer
 import org.kodein.di.compose.androidContextDI
 import org.kodein.di.instance
 
 @Composable
-fun MoviesMainScreen() {
+fun MoviesMainScreen(
+    onOpenGreedScreen: (type: GreedType) -> Unit,
+    onOpenDetailsScreen: (id: Int) -> Unit
+) {
     val di = androidContextDI()
     val repository: MoviesRepository by di.instance()
     val stateNow by stateShortProducer(response = repository::getNowPlaying)
@@ -51,16 +55,21 @@ fun MoviesMainScreen() {
                 Spacer(modifier = Modifier.size(8.dp))
             }
             item {
-                MoviesBigRow(state = stateNow, title = "Movies now playing", onShowAll = {
-                    //TODO переход на весь список фильмов
-                })
+                MoviesBigRow(
+                    state = stateNow,
+                    title = "Movies now playing",
+                    onItemClick = onOpenDetailsScreen,
+                    onShowAllClick = {
+                        onOpenGreedScreen(GreedType.NOW)
+                    }
+                )
             }
             item {
                 Spacer(modifier = Modifier.size(12.dp))
             }
             item {
                 MoviesRow(state = statePop, title = "What's Popular", onShowAll = {
-                    //TODO переход на весь список фильмов
+                    onOpenGreedScreen(GreedType.POP)
                 })
             }
             item {
@@ -68,7 +77,7 @@ fun MoviesMainScreen() {
             }
             item {
                 MoviesRow(state = stateTop, title = "Top movies", onShowAll = {
-                    //TODO переход на весь список фильмов
+                    onOpenGreedScreen(GreedType.TOP)
                 })
             }
         }

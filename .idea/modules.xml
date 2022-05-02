@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects.FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects.FilmsLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies/AndroidStudioProjects.FilmsLibrary.movies.iml" filepath="$PROJECT_DIR$/.idea/modules/movies/AndroidStudioProjects.FilmsLibrary.movies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.iml" filepath="$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FilmsLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/FilmsLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FilmsLibrary.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies/FilmsLibrary.movies.iml" filepath="$PROJECT_DIR$/.idea/modules/movies/FilmsLibrary.movies.iml" />

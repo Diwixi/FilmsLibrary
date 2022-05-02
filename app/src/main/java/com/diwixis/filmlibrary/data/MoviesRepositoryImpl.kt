@@ -24,6 +24,7 @@ class MoviesRepositoryImpl(
 
     override suspend fun getNowPlaying(page: Int) = api
         .getNowPlayingMovies(Params.getParams(page)).movies
+//        .also { db.movieDao().insertAll(it) }
         .map { it.map() }
 
 //    override suspend fun getMovieById(movieId: Int) =

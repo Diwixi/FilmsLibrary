@@ -5,6 +5,7 @@ import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
 import com.diwixis.filmlibrary.data.MoviesRepositoryImpl
 import com.diwixis.filmlibrary.domain.MoviesRepository
+import com.pg.network.BuildConfig.API_BASE_URL
 import com.pg.network.Network.createNetworkClient
 import org.kodein.di.DI
 import org.kodein.di.android.x.androidXModule

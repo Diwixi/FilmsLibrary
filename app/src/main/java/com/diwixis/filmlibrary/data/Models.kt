@@ -8,6 +8,7 @@ import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.domain.Movies
 import com.pg.network.BuildConfig
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class MoviesBean(
