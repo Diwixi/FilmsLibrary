@@ -1,26 +1,38 @@
 package com.diwixis.filmlibrary.domain.di
 
-import android.app.Application
 import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
 import com.diwixis.filmlibrary.data.MoviesRepositoryImpl
+import com.diwixis.filmlibrary.data.datasource.LocalDataSource
+import com.diwixis.filmlibrary.data.datasource.RemoteDataSource
 import com.diwixis.filmlibrary.domain.MoviesRepository
+import com.diwixis.filmlibrary.domain.usecases.GetNowPlayingMoviesUseCase
+import com.diwixis.filmlibrary.domain.usecases.GetPopMoviesUseCase
+import com.diwixis.filmlibrary.domain.usecases.GetTopMoviesUseCase
+import com.diwixis.filmlibrary.domain.usecases.MainScreenUseCase
+import com.diwixis.filmlibrary.domain.viewmodels.MainViewModel
 import com.pg.network.BuildConfig.API_BASE_URL
 import com.pg.network.Network.createNetworkClient
-import org.kodein.di.DI
-import org.kodein.di.android.x.androidXModule
-import org.kodein.di.bindProvider
-import org.kodein.di.instance
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 
-fun initApp(app: Application) {
-    DI {
-        import(androidXModule(app))
-    }
+val viewModelModule = module {
+    viewModelOf(::MainViewModel)
 }
 
-val moviesList = DI {
-    bindProvider { Database.create(instance()) }
-    bindProvider<TmdbApi> { createNetworkClient(API_BASE_URL).create(TmdbApi::class.java) }
-    bindProvider<MoviesRepository> { MoviesRepositoryImpl(instance()) }
-//    bindProvider { MoviesViewModel(instance()) }
+val sourceModule = module {
+    singleOf(::LocalDataSource)
+    singleOf(::RemoteDataSource)
+    single { Database.create(get()) }
+    single<TmdbApi> { createNetworkClient(API_BASE_URL).create(TmdbApi::class.java) }
+    single<MoviesRepository> { MoviesRepositoryImpl(get(), get()) }
+}
+
+val useCaseModule = module {
+    factoryOf(::GetTopMoviesUseCase)
+    factoryOf(::GetPopMoviesUseCase)
+    factoryOf(::GetNowPlayingMoviesUseCase)
+    factoryOf(::MainScreenUseCase)
 }

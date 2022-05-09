@@ -1,26 +1,19 @@
 package com.diwixis.filmlibrary.presentation.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
-import coil.size.OriginalSize
-import coil.size.Scale
 import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.presentation.state.MovieListState
 
@@ -42,16 +35,16 @@ fun MoviesBigRow(
             }
             Spacer(modifier = Modifier.size(8.dp))
         }
-        when {
-            state.loading -> {
+        when (state) {
+            is MovieListState.Loading -> {
                 Text("Loading process")
             }
-            state.error != null -> {
-                Text(state.error)
+            is MovieListState.Error -> {
+                Text(state.message)
             }
-            else -> {
+            is MovieListState.Data -> {
                 LazyRow(verticalAlignment = Alignment.CenterVertically) {
-                    items(state.movies) {
+                    items(state.data) {
                         MovieBigItem(it, onItemClick)
                     }
                     item {
@@ -73,22 +66,7 @@ private fun MovieBigItem(movie: Movie, onClick: (Int) -> Unit) {
             .clickable { onClick(movie.id) },
         contentAlignment = Alignment.BottomCenter
     ) {
-        movie.posterPath?.also {
-            Image(
-                painter = rememberImagePainter(
-                    data = it,
-                    builder = {
-                        size(OriginalSize)
-                        scale(Scale.FIT)
-                    }
-                ),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.FillWidth,
-            )
-        }
+        PosterView(movie.posterPath, 8.dp)
         (movie.title ?: movie.originalTitle)?.also {
             Text(
                 it,

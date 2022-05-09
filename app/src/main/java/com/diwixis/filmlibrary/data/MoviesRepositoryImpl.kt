@@ -1,31 +1,35 @@
 package com.diwixis.filmlibrary.data
 
-import com.diwixis.filmlibrary.api.Params
-import com.diwixis.filmlibrary.api.TmdbApi
+import com.diwixis.filmlibrary.data.datasource.LocalDataSource
+import com.diwixis.filmlibrary.data.datasource.RemoteDataSource
 import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.domain.MoviesRepository
 
 class MoviesRepositoryImpl(
-//    private val db: Database,
-    private val api: TmdbApi
+    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: RemoteDataSource
 ) : MoviesRepository {
 
-    //TODO переделать
-    override suspend fun getTopRateMovies(page: Int): List<Movie> = api
-        .getTopRatedMovies(Params.getParams(page)).movies
-//        .also { db.movieDao().insertAll(it) }
-        .map { it.map() }
+    // TODO: рассмотреть возможность хранить данные тут
+//    val movies: Flow<Movie> = ...
 
-    //TODO переделать
-    override suspend fun getPopularMovies(page: Int) = api
-        .getPopularMovies(Params.getParams(page)).movies
+    //TODO добавить ипользование localDataSource
+    override suspend fun getTopRateMovies(page: Int): List<Movie> =
+        remoteDataSource.getTopRate(page)
 //        .also { db.movieDao().insertAll(it) }
-        .map { it.map() }
+            .map { it.map() }
 
-    override suspend fun getNowPlaying(page: Int) = api
-        .getNowPlayingMovies(Params.getParams(page)).movies
+    //TODO добавить ипользование localDataSource
+    override suspend fun getPopularMovies(page: Int) =
+        remoteDataSource.getPopular(page)
 //        .also { db.movieDao().insertAll(it) }
-        .map { it.map() }
+            .map { it.map() }
+
+    //TODO добавить ипользование localDataSource
+    override suspend fun getNowPlayingMovies(page: Int) =
+        remoteDataSource.getNowPlaying(page)
+//        .also { db.movieDao().insertAll(it) }
+            .map { it.map() }
 
 //    override suspend fun getMovieById(movieId: Int) =
 //        db.movieDao().getById(movieId).map()

@@ -4,26 +4,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.diwixis.filmlibrary.domain.di.moviesList
+import com.diwixis.filmlibrary.domain.di.sourceModule
+import com.diwixis.filmlibrary.domain.di.useCaseModule
+import com.diwixis.filmlibrary.domain.di.viewModelModule
 import com.diwixis.filmlibrary.navigation.AuthorizedGraph
 import com.diwixis.filmlibrary.presentation.components.NetworkErrorWrapper
 import com.diwixis.filmlibrary.ui.theme.FilmLybraryTheme
 import kotlinx.coroutines.launch
-import org.kodein.di.DI
-import org.kodein.di.DIAware
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.startKoin
 
-class MainActivity : ComponentActivity(), DIAware {
-    override val di: DI = moviesList
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             FilmLybraryTheme {
                 Surface(color = MaterialTheme.colors.background) {
