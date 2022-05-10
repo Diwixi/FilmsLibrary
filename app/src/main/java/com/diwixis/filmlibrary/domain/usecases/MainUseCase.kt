@@ -3,7 +3,7 @@ package com.diwixis.filmlibrary.domain.usecases
 import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.domain.MoviesRepository
 
-class MainScreenUseCase(private val repository: MoviesRepository) {
+class MainUseCase(private val repository: MoviesRepository) {
 
     suspend fun getTopMovies(): List<Movie> =
         GetTopMoviesUseCase(repository)(PAGE).take(MOVIES_NUMBER)

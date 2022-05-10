@@ -14,7 +14,7 @@ import coil.size.OriginalSize
 import coil.size.Scale
 
 @Composable
-fun PosterView(posterPath: String?, cornerSize: Dp) {
+fun PosterView(posterPath: String?, cornerSize: Dp, modifier: Modifier = Modifier.fillMaxSize()) {
     if (posterPath == null) {
         Shimmer()
     } else {
@@ -27,9 +27,7 @@ fun PosterView(posterPath: String?, cornerSize: Dp) {
                 }
             ),
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(RoundedCornerShape(cornerSize)),
+            modifier = modifier.clip(RoundedCornerShape(cornerSize)),
             contentScale = ContentScale.FillWidth,
         )
     }

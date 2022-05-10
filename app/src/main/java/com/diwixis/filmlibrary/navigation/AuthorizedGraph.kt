@@ -54,8 +54,8 @@ fun AuthorizedGraph() {
                     }
                 )
             ) { navBackStack ->
-                val type = navBackStack.getSerializable(ScreenConstants.TYPE)
-                MovieListScreen(GreedType.values().find { it.name == type })
+                val type = (navBackStack.getSerializable(ScreenConstants.TYPE) as GreedType)
+                MovieListScreen(GreedType.values().find { it.name == type.name })
             }
             composable(
                 route = Screens.MovieDetailsScreen.route,

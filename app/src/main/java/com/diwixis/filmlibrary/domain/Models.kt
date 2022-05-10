@@ -8,9 +8,12 @@ data class Movies(
 data class Movie(
     var id: Int,
     val title: String? = null,
+    val originalTitle: String? = null,
     val posterPath: String? = null,
     val overview: String? = null,
     val releaseDate: String? = null,
-    val originalTitle: String? = null,
     val popularity: Double? = null
-)
+) {
+    val name: String
+        get() = title ?: originalTitle ?: "[NO TITLE]"
+}
