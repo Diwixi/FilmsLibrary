@@ -2,12 +2,14 @@
 Film library is a pet-project app and that work with the Tmdb-api. Here I test some interesting things for me and try to do as like me ^_^
 
 What the next?
-* more modules
 * jetpack compose
+* flow (after coroutines)
+* pagination
+* more modules
 * add tests
 * add a detail screen for a movie
 * show rating of film and other informations
-* flow (after coroutines)
+* (maybe) change Retrofit to Ktorfit
 * (maybe) kotlin multiplatform
 
 Done:
