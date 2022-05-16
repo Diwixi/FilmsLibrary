@@ -7,7 +7,9 @@ import com.diwixis.filmlibrary.data.datasource.LocalDataSource
 import com.diwixis.filmlibrary.data.datasource.RemoteDataSource
 import com.diwixis.filmlibrary.domain.MoviesRepository
 import com.diwixis.filmlibrary.domain.usecases.*
-import com.diwixis.filmlibrary.domain.viewmodels.*
+import com.diwixis.filmlibrary.domain.viewmodels.MainViewModel
+import com.diwixis.filmlibrary.domain.viewmodels.MovieDetailsViewModel
+import com.diwixis.filmlibrary.domain.viewmodels.MovieListViewModel
 import com.pg.network.BuildConfig.API_BASE_URL
 import com.pg.network.Network.createNetworkClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -18,6 +20,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModelOf(::MainViewModel)
     viewModelOf(::MovieListViewModel)
+    viewModelOf(::MovieDetailsViewModel)
 }
 
 val sourceModule = module {
@@ -34,4 +37,5 @@ val useCaseModule = module {
     factoryOf(::GetNowPlayingMoviesUseCase)
     factoryOf(::MainUseCase)
     factoryOf(::MovieListUseCase)
+    factoryOf(::MovieDetailsUseCase)
 }

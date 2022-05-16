@@ -14,9 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.diwixis.filmlibrary.R
+import com.diwixis.filmlibrary.domain.Action
 
 @Composable
-fun ShowMoreItem(onClick: () -> Unit) {
+fun ShowMoreItem(onClick: Action) {
     Box(
         modifier = Modifier
             .size(100.dp)

@@ -1,3 +1,2 @@
 include ':app'
-include ':movies'
 include ':network'

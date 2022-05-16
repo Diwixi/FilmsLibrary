@@ -15,7 +15,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.diwixis.filmlibrary.domain.Movie
-import com.diwixis.filmlibrary.presentation.state.MovieListState
+import com.diwixis.filmlibrary.presentation.MovieListState
+import com.diwixis.filmlibrary.presentation.UiState
 
 @Composable
 fun MoviesBigRow(
@@ -36,13 +37,13 @@ fun MoviesBigRow(
             Spacer(modifier = Modifier.size(8.dp))
         }
         when (state) {
-            is MovieListState.Loading -> {
+            is UiState.Loading -> {
                 Text("Loading process")
             }
-            is MovieListState.Error -> {
+            is UiState.Error -> {
                 Text(state.message)
             }
-            is MovieListState.Data -> {
+            is UiState.Data -> {
                 LazyRow(verticalAlignment = Alignment.CenterVertically) {
                     items(state.data) {
                         MovieBigItem(it, onItemClick)

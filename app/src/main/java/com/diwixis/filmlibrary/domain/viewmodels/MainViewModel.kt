@@ -3,7 +3,8 @@ package com.diwixis.filmlibrary.domain.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diwixis.filmlibrary.domain.usecases.MainUseCase
-import com.diwixis.filmlibrary.presentation.state.MovieListState
+import com.diwixis.filmlibrary.presentation.MovieListState
+import com.diwixis.filmlibrary.presentation.UiState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,15 +12,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val useCase: MainUseCase) : ViewModel() {
-    private val _topState = MutableStateFlow<MovieListState>(MovieListState.Loading)
+    private val _topState = MutableStateFlow<MovieListState>(UiState.Loading)
     val topState: StateFlow<MovieListState> = _topState
     private var fetchTopJob: Job? = null
 
-    private val _popState = MutableStateFlow<MovieListState>(MovieListState.Loading)
+    private val _popState = MutableStateFlow<MovieListState>(UiState.Loading)
     val popState: StateFlow<MovieListState> = _popState
     private var fetchPopJob: Job? = null
 
-    private val _nowPlayingState = MutableStateFlow<MovieListState>(MovieListState.Loading)
+    private val _nowPlayingState = MutableStateFlow<MovieListState>(UiState.Loading)
     val nowPlayingState: StateFlow<MovieListState> = _nowPlayingState
     private var fetchNowJob: Job? = null
 
@@ -27,7 +28,7 @@ class MainViewModel(private val useCase: MainUseCase) : ViewModel() {
         fetchTopJob?.cancel()
         fetchTopJob = viewModelScope.launch {
             val newMovies = useCase.getTopMovies()
-            _topState.update { MovieListState.Data(data = newMovies) }
+            _topState.update { UiState.Data(data = newMovies) }
         }
     }
 
@@ -35,7 +36,7 @@ class MainViewModel(private val useCase: MainUseCase) : ViewModel() {
         fetchPopJob?.cancel()
         fetchPopJob = viewModelScope.launch {
             val newMovies = useCase.getPopMovies()
-            _popState.update { MovieListState.Data(data = newMovies) }
+            _popState.update { UiState.Data(data = newMovies) }
         }
     }
 
@@ -43,7 +44,7 @@ class MainViewModel(private val useCase: MainUseCase) : ViewModel() {
         fetchNowJob?.cancel()
         fetchNowJob = viewModelScope.launch {
             val newMovies = useCase.getNowPlayingMovies()
-            _nowPlayingState.update { MovieListState.Data(data = newMovies) }
+            _nowPlayingState.update { UiState.Data(data = newMovies) }
         }
     }
 }

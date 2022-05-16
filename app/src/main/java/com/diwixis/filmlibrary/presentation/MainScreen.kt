@@ -47,14 +47,28 @@ fun MoviesMainScreen(
             )
         }
         item {
-            MoviesRow(state = statePop, title = "What's Popular", onShowAll = {
-                onOpenGreedScreen(GreedType.POP)
-            })
+            MoviesRow(
+                state = statePop,
+                title = "What's Popular",
+                onShowAll = {
+                    onOpenGreedScreen(GreedType.POP)
+                },
+                onItemClick = { movieId ->
+                    onOpenDetailsScreen(movieId)
+                }
+            )
         }
         item {
-            MoviesRow(state = stateTop, title = "Top movies", onShowAll = {
-                onOpenGreedScreen(GreedType.TOP)
-            })
+            MoviesRow(
+                state = stateTop,
+                title = "Top movies",
+                onShowAll = {
+                    onOpenGreedScreen(GreedType.TOP)
+                },
+                onItemClick = { movieId ->
+                    onOpenDetailsScreen(movieId)
+                }
+            )
         }
     }
 }

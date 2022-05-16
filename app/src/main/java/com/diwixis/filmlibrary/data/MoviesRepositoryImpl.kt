@@ -31,6 +31,8 @@ class MoviesRepositoryImpl(
 //        .also { db.movieDao().insertAll(it) }
             .map { it.map() }
 
-//    override suspend fun getMovieById(movieId: Int) =
-//        db.movieDao().getById(movieId).map()
+    override suspend fun getMovieById(movieId: Int) =
+        remoteDataSource.getMovie(movieId)
+//            .also { db.movieDao().insert(it) }
+            .map()
 }

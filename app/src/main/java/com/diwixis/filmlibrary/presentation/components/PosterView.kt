@@ -9,12 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.size.OriginalSize
 import coil.size.Scale
 
 @Composable
-fun PosterView(posterPath: String?, cornerSize: Dp, modifier: Modifier = Modifier.fillMaxSize()) {
+fun PosterView(
+    posterPath: String?,
+    cornerSize: Dp = 0.dp,
+    modifier: Modifier = Modifier.fillMaxSize()
+) {
     if (posterPath == null) {
         Shimmer()
     } else {

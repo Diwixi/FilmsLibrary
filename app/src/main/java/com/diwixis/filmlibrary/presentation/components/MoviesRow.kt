@@ -1,5 +1,6 @@
 package com.diwixis.filmlibrary.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -11,11 +12,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.diwixis.filmlibrary.domain.Action
+import com.diwixis.filmlibrary.domain.DataAction
 import com.diwixis.filmlibrary.domain.Movie
-import com.diwixis.filmlibrary.presentation.state.MovieListState
+import com.diwixis.filmlibrary.presentation.MovieListState
+import com.diwixis.filmlibrary.presentation.UiState
 
 @Composable
-fun MoviesRow(state: MovieListState, onShowAll: () -> Unit, title: String = "") {
+fun MoviesRow(
+    state: MovieListState,
+    onShowAll: Action,
+    title: String = "",
+    onItemClick: DataAction<Int>
+) {
     Column {
         if (title.isNotEmpty()) {
             Box {
@@ -28,16 +37,16 @@ fun MoviesRow(state: MovieListState, onShowAll: () -> Unit, title: String = "") 
             Spacer(modifier = Modifier.size(8.dp))
         }
         when (state) {
-            is MovieListState.Loading -> {
+            is UiState.Loading -> {
                 Text("Loading process")
             }
-            is MovieListState.Error -> {
+            is UiState.Error -> {
                 Text(state.message)
             }
-            is MovieListState.Data -> {
+            is UiState.Data -> {
                 LazyRow(verticalAlignment = Alignment.CenterVertically) {
                     items(state.data) {
-                        MovieItem(it)
+                        MovieItem(it, onItemClick)
                     }
                     item {
                         ShowMoreItem(onClick = onShowAll)
@@ -49,11 +58,12 @@ fun MoviesRow(state: MovieListState, onShowAll: () -> Unit, title: String = "") 
 }
 
 @Composable
-private fun MovieItem(movie: Movie) {
+private fun MovieItem(movie: Movie, onClick: DataAction<Int>) {
     Column(
         modifier = Modifier
             .width(125.dp)
-            .padding(start = 16.dp),
+            .padding(start = 16.dp)
+            .clickable { onClick(movie.id) },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PosterView(movie.posterPath, 16.dp)

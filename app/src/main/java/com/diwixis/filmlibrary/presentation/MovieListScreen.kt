@@ -15,7 +15,6 @@ import com.diwixis.filmlibrary.domain.Movie
 import com.diwixis.filmlibrary.domain.viewmodels.MovieListViewModel
 import com.diwixis.filmlibrary.navigation.GreedType
 import com.diwixis.filmlibrary.presentation.components.PosterView
-import com.diwixis.filmlibrary.presentation.state.MovieListState
 import org.koin.androidx.compose.viewModel
 
 @Composable
@@ -30,12 +29,12 @@ fun MovieListScreen(type: GreedType?) {
     val _state: MovieListState by viewModel.state.collectAsState()
 
     when (val state = _state) { //-> because collectAsState is delegate
-        is MovieListState.Loading -> Shimmer()
-        is MovieListState.Error -> {
+        is UiState.Loading -> Shimmer()
+        is UiState.Error -> {
             // TODO: Show error view
             Text(state.message)
         }
-        is MovieListState.Data -> {
+        is UiState.Data -> {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(state.data) { item ->
                     MovieItem(movie = item)

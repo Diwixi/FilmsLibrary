@@ -14,12 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.diwixis.filmlibrary.domain.Action
 import com.pg.network.Network
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @Composable
-fun NetworkErrorWrapper(content: @Composable () -> Unit) {
+fun NetworkErrorWrapper(content: @Composable Action) {
     var connection by remember {
         mutableStateOf(Network.Connection.AVAILABLE)
     }
