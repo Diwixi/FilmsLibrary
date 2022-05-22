@@ -1,9 +1,9 @@
-package com.diwixis.filmlibrary.presentation
+package com.diwixis.filmlibrary.features.list
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -12,14 +12,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.diwixis.filmlibrary.domain.Movie
-import com.diwixis.filmlibrary.domain.viewmodels.MovieListViewModel
-import com.diwixis.filmlibrary.navigation.GreedType
+import com.diwixis.filmlibrary.navigation.ListType
+import com.diwixis.filmlibrary.presentation.MovieListState
+import com.diwixis.filmlibrary.presentation.UiState
 import com.diwixis.filmlibrary.presentation.components.PosterView
 import org.koin.androidx.compose.viewModel
 
 @Composable
-fun MovieListScreen(type: GreedType?) {
-
+fun MovieListRoute(
+    onBackClick: () -> Unit,
+    type: ListType?
+) {
     val viewModel: MovieListViewModel by viewModel()
 
     LaunchedEffect(Unit) {
@@ -35,11 +38,16 @@ fun MovieListScreen(type: GreedType?) {
             Text(state.message)
         }
         is UiState.Data -> {
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(state.data) { item ->
-                    MovieItem(movie = item)
-                }
-            }
+            MovieListScreen(movieList = state.data)
+        }
+    }
+}
+
+@Composable
+fun MovieListScreen(movieList: List<Movie>) {
+    LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(movieList) { item ->
+            MovieItem(movie = item)
         }
     }
 }

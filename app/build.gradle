@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.pg.filmlybrary"
         minSdk 30
-        targetSdk 31
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -59,22 +59,24 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:1.1.1"
 
     //Theme
-    implementation "androidx.compose.material:material:1.1.1"
+    implementation "androidx.compose.material3:material3:1.0.0-alpha11"
+    implementation "androidx.compose.material3:material3-window-size-class:1.0.0-alpha11"
+    implementation "androidx.window:window:1.1.0-alpha02"
 
     //Threading
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
     //IMAGE
     implementation("io.coil-kt:coil-compose:1.4.0")
 
     //DB
     implementation "androidx.room:room-runtime:2.4.2"
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01'
 
     //DI
-        // Koin main features for Android
+    // Koin main features for Android
     implementation "io.insert-koin:koin-android:3.2.0-beta-1"
-        // Jetpack Compose
+    // Jetpack Compose
     implementation "io.insert-koin:koin-androidx-compose:3.2.0-beta-1"
 
     //NAVIGATION

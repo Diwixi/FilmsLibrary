@@ -7,9 +7,9 @@ import com.diwixis.filmlibrary.data.datasource.LocalDataSource
 import com.diwixis.filmlibrary.data.datasource.RemoteDataSource
 import com.diwixis.filmlibrary.domain.MoviesRepository
 import com.diwixis.filmlibrary.domain.usecases.*
-import com.diwixis.filmlibrary.domain.viewmodels.MainViewModel
-import com.diwixis.filmlibrary.domain.viewmodels.MovieDetailsViewModel
-import com.diwixis.filmlibrary.domain.viewmodels.MovieListViewModel
+import com.diwixis.filmlibrary.features.movies.MoviesPreviewViewModel
+import com.diwixis.filmlibrary.features.details.MovieDetailsViewModel
+import com.diwixis.filmlibrary.features.list.MovieListViewModel
 import com.pg.network.BuildConfig.API_BASE_URL
 import com.pg.network.Network.createNetworkClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -18,7 +18,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModelOf(::MainViewModel)
+    viewModelOf(::MoviesPreviewViewModel)
     viewModelOf(::MovieListViewModel)
     viewModelOf(::MovieDetailsViewModel)
 }

@@ -1,5 +1,6 @@
-package com.diwixis.filmlibrary.domain.viewmodels
+package com.diwixis.filmlibrary.features.details
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diwixis.filmlibrary.domain.usecases.MovieDetailsUseCase
@@ -11,7 +12,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MovieDetailsViewModel(private val useCase: MovieDetailsUseCase) : ViewModel() {
+class MovieDetailsViewModel(
+    private val useCase: MovieDetailsUseCase,
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
     private val _state = MutableStateFlow<MovieState>(UiState.Loading)
     val state: StateFlow<MovieState> = _state
     var fetchJob: Job? = null

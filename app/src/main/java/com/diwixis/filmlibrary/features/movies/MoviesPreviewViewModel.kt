@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.domain.viewmodels
+package com.diwixis.filmlibrary.features.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val useCase: MainUseCase) : ViewModel() {
+class MoviesPreviewViewModel(private val useCase: MainUseCase) : ViewModel() {
     private val _topState = MutableStateFlow<MovieListState>(UiState.Loading)
     val topState: StateFlow<MovieListState> = _topState
     private var fetchTopJob: Job? = null

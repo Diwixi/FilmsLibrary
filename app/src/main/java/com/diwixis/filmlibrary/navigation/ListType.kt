@@ -1,6 +1,6 @@
 package com.diwixis.filmlibrary.navigation
 
-enum class GreedType {
+enum class ListType {
     NOW,
     POP,
     TOP

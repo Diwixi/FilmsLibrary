@@ -1,4 +1,4 @@
-package com.diwixis.filmlibrary.presentation
+package com.diwixis.filmlibrary.features.movies
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
@@ -9,18 +9,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.diwixis.filmlibrary.domain.viewmodels.MainViewModel
-import com.diwixis.filmlibrary.navigation.GreedType
-import com.diwixis.filmlibrary.presentation.components.MoviesBigRow
-import com.diwixis.filmlibrary.presentation.components.MoviesRow
+import com.diwixis.filmlibrary.features.movies.components.MoviesBigRow
+import com.diwixis.filmlibrary.features.movies.components.MoviesRow
+import com.diwixis.filmlibrary.navigation.ListType
+import com.diwixis.filmlibrary.presentation.MovieListState
 import org.koin.androidx.compose.viewModel
 
 @Composable
-fun MoviesMainScreen(
-    onOpenGreedScreen: (type: GreedType) -> Unit,
+fun MoviesPreviewRoute(
+    onBackClick: () -> Unit, //сделать onBack по новому
+    onOpenListScreen: (type: ListType) -> Unit,
     onOpenDetailsScreen: (id: Int) -> Unit,
 ) {
-    val viewModel: MainViewModel by viewModel()
+    val viewModel: MoviesPreviewViewModel by viewModel()
 
     LaunchedEffect(Unit) {
         viewModel.fetchTopMovies()
@@ -32,6 +33,23 @@ fun MoviesMainScreen(
     val statePop by viewModel.popState.collectAsState()
     val stateNowPlaying by viewModel.nowPlayingState.collectAsState()
 
+    MoviesPreviewScreen(
+        stateTop,
+        statePop,
+        stateNowPlaying,
+        onOpenListScreen,
+        onOpenDetailsScreen
+    )
+}
+
+@Composable
+fun MoviesPreviewScreen(
+    stateTop: MovieListState,
+    statePop: MovieListState,
+    stateNowPlaying: MovieListState,
+    onOpenGreedScreen: (type: ListType) -> Unit,
+    onOpenDetailsScreen: (id: Int) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -42,7 +60,7 @@ fun MoviesMainScreen(
                 title = "Movies now playing",
                 onItemClick = onOpenDetailsScreen,
                 onShowAllClick = {
-                    onOpenGreedScreen(GreedType.NOW)
+                    onOpenGreedScreen(ListType.NOW)
                 }
             )
         }
@@ -51,7 +69,7 @@ fun MoviesMainScreen(
                 state = statePop,
                 title = "What's Popular",
                 onShowAll = {
-                    onOpenGreedScreen(GreedType.POP)
+                    onOpenGreedScreen(ListType.POP)
                 },
                 onItemClick = { movieId ->
                     onOpenDetailsScreen(movieId)
@@ -63,7 +81,7 @@ fun MoviesMainScreen(
                 state = stateTop,
                 title = "Top movies",
                 onShowAll = {
-                    onOpenGreedScreen(GreedType.TOP)
+                    onOpenGreedScreen(ListType.TOP)
                 },
                 onItemClick = { movieId ->
                     onOpenDetailsScreen(movieId)
