@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.diwixis.filmlibrary.navigation.FlBottomBar
@@ -30,9 +31,10 @@ fun FlApp(windowSizeClass: WindowSizeClass) {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
+        val contentPadding = WindowInsets.systemBars.asPaddingValues()
 
         Scaffold(
-            modifier = Modifier,
+            modifier = Modifier.padding(contentPadding),
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.onBackground,
             bottomBar = {
@@ -56,8 +58,7 @@ fun FlApp(windowSizeClass: WindowSizeClass) {
                 if (windowSizeClass.widthSizeClass != WindowWidthSizeClass.Compact) {
                     FlNavRail(
                         onNavigateToTopLevelDestination = topLevelNavigation::navigateTo,
-                        currentDestination = currentDestination,
-                        modifier = Modifier.safeDrawingPadding()
+                        currentDestination = currentDestination
                     )
                 }
 

@@ -7,7 +7,7 @@ import android.net.NetworkRequest
 import com.diwixis.filmlibrary.domain.di.sourceModule
 import com.diwixis.filmlibrary.domain.di.useCaseModule
 import com.diwixis.filmlibrary.domain.di.viewModelModule
-import com.pg.network.Network
+import com.pg.feature_network.Network
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
@@ -22,7 +22,7 @@ class FilmsLibraryApp : Application() {
         }
 
         (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).apply {
-            registerNetworkCallback(NetworkRequest.Builder().build(), Network.networkCallback)
+            registerNetworkCallback(NetworkRequest.Builder().build(), com.pg.feature_network.Network.networkCallback)
         }
     }
 }

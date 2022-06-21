@@ -1,17 +1,20 @@
 package com.diwixis.filmlibrary.domain.di
 
-import com.diwixis.filmlibrary.api.TmdbApi
 import com.diwixis.filmlibrary.data.Database
-import com.diwixis.filmlibrary.data.MoviesRepositoryImpl
-import com.diwixis.filmlibrary.data.datasource.LocalDataSource
-import com.diwixis.filmlibrary.data.datasource.RemoteDataSource
-import com.diwixis.filmlibrary.domain.MoviesRepository
+import com.pg.remote.MoviesRepositoryImpl
+import com.pg.feature_network.LocalDataSource
+import com.pg.remote.RemoteDataSource
 import com.diwixis.filmlibrary.domain.usecases.*
-import com.diwixis.filmlibrary.features.movies.MoviesPreviewViewModel
-import com.diwixis.filmlibrary.features.details.MovieDetailsViewModel
+import com.pg.feature_preview.MoviesPreviewViewModel
+import com.pg.feature_details.presentation.MovieDetailsViewModel
 import com.diwixis.filmlibrary.features.list.MovieListViewModel
+import com.pg.feature_details.usecase.MovieDetailsUseCase
+import com.pg.feature_preview.MainUseCase
 import com.pg.network.BuildConfig.API_BASE_URL
-import com.pg.network.Network.createNetworkClient
+import com.pg.feature_network.Network.createNetworkClient
+import com.pg.remote.GetNowPlayingMoviesUseCase
+import com.pg.remote.GetPopMoviesUseCase
+import com.pg.remote.GetTopMoviesUseCase
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -27,8 +30,8 @@ val sourceModule = module {
     singleOf(::LocalDataSource)
     singleOf(::RemoteDataSource)
     single { Database.create(get()) }
-    single<TmdbApi> { createNetworkClient(API_BASE_URL).create(TmdbApi::class.java) }
-    single<MoviesRepository> { MoviesRepositoryImpl(get(), get()) }
+    single<TmdbApi> { createNetworkClient(API_BASE_URL).create(com.pg.remote.TmdbApi::class.java) }
+    single<MoviesRepository> { com.pg.remote.MoviesRepositoryImpl(get(), get()) }
 }
 
 val useCaseModule = module {

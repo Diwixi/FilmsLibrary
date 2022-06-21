@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.10'
+}
+
+apply from: '../reactive.gradle'
+apply from: '../network.gradle'
+
+android {
+    namespace 'com.pg.api-network'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 30
+        targetSdk 32
+
+        buildConfigField "String", "API_KEY", '"0516658c86a06036a56245c87217383f"'
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation "androidx.compose.material3:material3:1.0.0-alpha13"
+}

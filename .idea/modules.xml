@@ -7,10 +7,26 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.FilmsLibrary.app.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.iml" filepath="$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.main.iml" filepath="$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/network/AndroidStudioProjects.FilmsLibrary.network.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/remote/FilmsLibrary.api-network.iml" filepath="$PROJECT_DIR$/.idea/modules/remote/FilmsLibrary.api-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/api-network/FilmsLibrary.api-network.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared/FilmsLibrary.base-ui.iml" filepath="$PROJECT_DIR$/.idea/modules/shared/FilmsLibrary.base-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/base-ui/FilmsLibrary.base-ui.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-network/FilmsLibrary.feature-data.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-network/FilmsLibrary.feature-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.main.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-data/FilmsLibrary.feature-data.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.main.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-details/FilmsLibrary.feature-details.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-preview/FilmsLibrary.feature-main.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-preview/FilmsLibrary.feature-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.main.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/feature-main/FilmsLibrary.feature-main.unitTest.iml" />
     </modules>
   </component>
 </project>

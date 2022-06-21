@@ -1,11 +1,10 @@
 package com.diwixis.filmlibrary.navigation
 
-import android.graphics.drawable.Icon
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.diwixis.filmlibrary.R
 import com.diwixis.filmlibrary.features.favourites.FavouritesDestination
-import com.diwixis.filmlibrary.features.movies.MoviesPreviewDestination
+import com.pg.feature_preview.MoviesPreviewDestination
 import com.diwixis.filmlibrary.features.settings.SettingsDestination
 
 class FlTopLevelNavigation(private val navController: NavHostController) {
@@ -38,7 +37,7 @@ data class TopLevelDestination(
 
 val TOP_LEVEL_DESTINATIONS = listOf(
     TopLevelDestination(
-        route = MoviesPreviewDestination.route,
+        route = com.pg.feature_preview.MoviesPreviewDestination.route,
         selectedIcon = NavIcons.MoviesSelected,
         unselectedIcon = NavIcons.MoviesSelected,
         iconTextId = R.string.preview_screen

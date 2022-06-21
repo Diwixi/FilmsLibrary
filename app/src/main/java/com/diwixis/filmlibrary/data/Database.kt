@@ -3,10 +3,11 @@ package com.diwixis.filmlibrary.data
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.pg.remote.model.MovieBean
 
 @androidx.room.Database(
     entities = [
-        MovieBean::class
+        com.pg.remote.model.MovieBean::class
     ],
     version = 1,
     exportSchema = true

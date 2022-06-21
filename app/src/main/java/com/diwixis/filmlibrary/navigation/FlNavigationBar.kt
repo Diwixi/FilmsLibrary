@@ -20,11 +20,7 @@ fun FlBottomBar(
     Surface(color = MaterialTheme.colorScheme.surface) {
 //        CompositionLocalProvider(LocalRippleTheme provides ClearRippleTheme) {
         NavigationBar(
-            modifier = Modifier.windowInsetsPadding(
-                WindowInsets.safeDrawing.only(
-                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
-                )
-            ),
+            modifier = Modifier,
             tonalElevation = 0.dp
         ) {
 

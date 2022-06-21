@@ -11,8 +11,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/api-network" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/base-ui" />
+            <option value="$PROJECT_DIR$/feature-data" />
+            <option value="$PROJECT_DIR$/feature-details" />
+            <option value="$PROJECT_DIR$/feature-main" />
           </set>
         </option>
       </GradleProjectSettings>
